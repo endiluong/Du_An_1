@@ -70,6 +70,7 @@ _Nói tóm lại để cho đơn giản việc khác nhau giữa Admin và User 
     FragmentCha FragmentNhapCon = new FragmentCha(***); <br>
     FragmentCha FragmentXuatCon = new FragmentCha(***); <br>
   </code>
+  <br> 
    <strong> *** </strong> Ở đây ta sẽ truyền vào Fragment Cha vì ở Ticket có 1 biến Type là Boolean, nếu Type = 1 sẽ là nhập và Type= 0 sẽ là Xuất. <br>
   <code>
     Fragment Cha sẽ có một Constructor đại loại như sau <br>
