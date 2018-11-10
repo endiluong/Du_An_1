@@ -30,8 +30,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static String TICKET_DATE="Date";
     public static String TICKET_TYPE="Type";
     public static String TICKET_PRODUCTNAME="ProductName";
-    public static String TICKET_PROUCTCODE="ProductCode";
-    public static String TICKET_NUMBER="Number";
+    public static String TICKET_PRODUCTCODE="ProductCode";
+    public static String TICKET_QUANTITY="Quantity";
     //
     //
     // Storage TABLE
@@ -39,7 +39,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static String STORAGE_ID="Id";
     public static String STORAGE_PRODUCTNAME="ProductName";
     public static String STORAGE_PRODUCTCODE="ProductCode";
-    public static String STORAGE_NUMBER="Number";
+    public static String STORAGE_QUANTITY="Quantity";
     public static String STORAGE_DATE="Date";
     /////////////////////////////////////////
     ////////////////////////////////////////
@@ -67,8 +67,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             TICKET_DATE+ " DATE, "+
             TICKET_TYPE+ " BOOLEAN, "+
             TICKET_PRODUCTNAME+" TEXT, "+
-            TICKET_PROUCTCODE+" TEXT, "+
-            TICKET_NUMBER+" INTEGER )";
+            TICKET_PRODUCTCODE+" TEXT, "+
+            TICKET_QUANTITY+" INTEGER )";
     /////////////////////////////////////
     // TABLE STORAGE
     /////////////////////////////////////
@@ -76,7 +76,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             STORAGE_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+
             STORAGE_PRODUCTNAME+" TEXT, "+
             STORAGE_PRODUCTCODE+" TEXT, "+
-            STORAGE_NUMBER+" INTEGER, "+
+            STORAGE_QUANTITY+" INTEGER, "+
             STORAGE_DATE+ " TEXT )";
     ///////////////////////////////////
     // CONSTRUCTOR

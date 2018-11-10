@@ -64,8 +64,8 @@ public class daoUsers {
         return db.update(SQLiteHelper.TABLE_USER_NAME, values, "id=?", new String[]{String.valueOf(datamodel.getId())});
     }
     //Delete by Id
-    public int deleteCourse(Users datamodel) {
-        return db.delete(SQLiteHelper.TABLE_USER_NAME, "id=?", new String[]{String.valueOf(datamodel.getId())});
+    public int deleteCourse(int id) {
+        return db.delete(SQLiteHelper.TABLE_USER_NAME, "id=?", new String[]{String.valueOf(id)});
     }
     ///////////////////////////////////////////////////
     // CREATE INSTANCE

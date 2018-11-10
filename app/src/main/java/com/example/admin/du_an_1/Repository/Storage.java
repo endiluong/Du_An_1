@@ -4,17 +4,17 @@ public class Storage {
     private String id;
     private String productName;
     private String productCode;
-    private int number;
+    private int quantity;
     private String date;
 
     public Storage() {
     }
 
-    public Storage(String id, String productName, String productCode, int number, String date) {
+    public Storage(String id, String productName, String productCode, int quantity, String date) {
         this.id = id;
         this.productName = productName;
         this.productCode = productCode;
-        this.number = number;
+        this.quantity = quantity;
         this.date = date;
     }
 
@@ -43,12 +43,12 @@ public class Storage {
     }
 
 
-    public int getNumber() {
-        return number;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getDate() {

@@ -9,19 +9,19 @@ public class Ticket implements Serializable {
     private Boolean type;
     private String productName;
     private String productCode;
-    private int number;
+    private int quantity;
 
     public Ticket() {
     }
 
-    public Ticket(String id, String tittle, String date, Boolean type, String productName, String productCode, int number) {
+    public Ticket(String id, String tittle, String date, Boolean type, String productName, String productCode, int quantity) {
         this.id = id;
         this.tittle = tittle;
         this.date = date;
         this.type = type;
         this.productName = productName;
         this.productCode = productCode;
-        this.number = number;
+        this.quantity = quantity;
     }
 
 
@@ -73,11 +73,11 @@ public class Ticket implements Serializable {
         this.productCode = productCode;
     }
 
-    public int getNumber() {
-        return number;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
