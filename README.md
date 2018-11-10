@@ -1,20 +1,35 @@
 # Du_An_1
 ------------------------------------
 # User:
-  +userId
-  +userUN
-  +userPW
+  +userId <br>
+  +userUN <br>
+  +userPW 
 # Product:
-  +productId
-  +productName
+  +productId <br>
+  +productName <br>
   +productCode
-#Ticket:
-  +ticketId
-  +ticketTitle
+# Ticket:
+  +ticketId <br>
+  +ticketTitle <br>
   +ticketProduct
-    {
-      .productName:
-      .productCode
+  <br>
+    { <br>
+      .productName: <br>
+      .productCode  <br>
     }
-  +ticketDate
-  +ticketQuantity
+    <br>
+  +ticketDate <br>
+  +ticketQuantity <br>
+# Storage
+  +storageId <br>
+  +storageProduct
+   <br>
+    { <br>
+      .productName: <br>
+      .productCode  <br>
+    }
+    <br>
+   +storageQuantity
+  <br>
+   +storageDate
+   -----------------------------------------------------------------------------
