@@ -61,6 +61,10 @@ _Nói tóm lại để cho đơn giản việc khác nhau giữa Admin và User 
   Ở đây sẽ hiện lên đơn giản 1 Đổi mật khẩu hoặc đăng xuất. Nếu là Admin sẽ có thể dùng nút Xem Danh sách User. Khi click vào xem danh sách User sẽ chuyển qua ActivityUser ở đây sẽ có 1 Listview chứa tất cả User. Và có thể thêm xoá sửa. <br>
   _Sau cùng khi kéo qua tiếp hoặc click vào navigate ta sẽ chuyển qua Phần thống kê. Nếu là Admin ta có thể xem thống kê Nhập và Xuất đồng thời 1 button để xem thêm danh sách Nhập Xuất. Click vào đó sẽ mở ActivityTicket, activity này sẽ chứa 1 listview hiển thị toàn bộ Ticket bao gồm nhập và xuất.Còn nếu là User thì sẽ không thể click vào nút đó. <br>
   _Khi click vào nút (+) là một FloatingAddButton sẽ mở lên AddTicketActivity. <br>
+  
+  ---------------------------------------
+  ---------------------------------------
+  
   Trong AddTicketActivity sẽ có 2 fragment mặc định khi vào sẽ là <strong> Thêm Hàng Hoá</strong> và vuốt qua hoặc chọn vào nút <strong> Xuất </strong> ta sẽ chuyển qua fragment <strong> Xuất Hàng Hoá </strong>. Và ở đây ta sẽ sử dụng 1 Fragment duy nhất sau đó tạo ra 2 fragment con nhập xuất bằng cách <br>
   <code>
     FragmentCha FragmentNhapCon = new FragmentCha(***); <br>
