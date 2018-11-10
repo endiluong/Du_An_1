@@ -1,7 +1,9 @@
-package com.example.admin.du_an_1;
+package com.example.admin.du_an_1.UI;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.admin.du_an_1.R;
 
 public class MainActivity extends AppCompatActivity {
 
