@@ -64,7 +64,7 @@ public class daoUsers {
         return db.update(SQLiteHelper.TABLE_USER_NAME, values, "id=?", new String[]{String.valueOf(datamodel.getId())});
     }
     //Delete by Id
-    public int deleteCourse(int id) {
+    public int deleteUser(int id) {
         return db.delete(SQLiteHelper.TABLE_USER_NAME, "id=?", new String[]{String.valueOf(id)});
     }
     ///////////////////////////////////////////////////

@@ -26,7 +26,7 @@ public class LoginService {
     }
     private boolean userLogin(String username,String password){
         if((username.equals("user")) &&( password.equals("user"))){
-            Toast.makeText(context, "Login as User", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Login as" + username , Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;

@@ -9,10 +9,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.admin.du_an_1.Controller.LoginService;
+import com.example.admin.du_an_1.Controller.SignUpService;
 import com.example.admin.du_an_1.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     LoginService loginService;
+    SignUpService signUpService;
     EditText etUsername, etPassword;
     Button btnLogin, btnSignUp;
 
@@ -25,8 +27,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         etPassword = findViewById(R.id.et_Password);
         btnLogin = findViewById(R.id.btnLogin);
         btnSignUp = findViewById(R.id.btnSignUp);
-        //CREATE INSTANCE FOR LOGIN SERVICE
+        //CREATE INSTANCE FOR  SERVICE
         loginService = new LoginService(this);
+        signUpService= new SignUpService(this);
+
         //
         btnLogin.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
@@ -39,6 +43,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(this, "Wrong UserName or Password", Toast.LENGTH_SHORT).show();
         }
     }
+    public void signUpClick(String username, String password){
+        if( this.signUpService.SignUp(username, password))
+        {
+            Toast.makeText(this, "User Created with Username: "+ username, Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Some thing went wrong, User resignation failed, try again !", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     public void onClick(View view) {
@@ -47,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 logInClicked(etUsername.getText().toString(), etPassword.getText().toString());
                 break;
             case R.id.btnSignUp:
-                Toast.makeText(this, "Sign Up Clicked", Toast.LENGTH_SHORT).show();
+                signUpClick(etUsername.getText().toString(), etPassword.getText().toString());
                 break;
         }
     }
