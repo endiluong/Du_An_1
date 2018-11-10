@@ -68,7 +68,7 @@ _Nói tóm lại để cho đơn giản việc khác nhau giữa Admin và User 
     FragmentCha(String type){ <br>
        if (type.equals("Nhap")){type= true} <br>
        else {type = false; } <br>
-  }<br>
+  } </code> <br>
     Bên trong FragmentCha sẽ bao gồm các Method xử lý cho 2 button Add và Cancel <br>
     Khi nhấn Add ta sẽ gọi vào TicketService và gọi hàm Add.<br>
     Việc xử lý hàm Add ở TicketService như sau:<br>
@@ -78,8 +78,7 @@ _Nói tóm lại để cho đơn giản việc khác nhau giữa Admin và User 
     + Một method sẽ gọi vào TicketDAO.getListNhap <br>
     + Một method sẽ gọi vào TicketDAO.getListXuat <br>
   Ở TicketService ta sẽ thêm vào 2 câu lệnh querry, 2 câu lệnh querry này sẽ xuất ra dữ liệu với điều kiện query <b> WHERE Type =? </b> và ta sẽ định nghĩa cho 2 method đó.
-  
-  </code>
+  <<<
 
 
  
