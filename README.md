@@ -56,7 +56,11 @@ _Nói tóm lại để cho đơn giản việc khác nhau giữa Admin và User 
   
       -------------------------------------------------------    
   Giao diện chính: <br>
-  Khi click vào nút (+) là một FloatingAddButton sẽ mở lên AddTicketActivity. <br>
+  _Giao diện chính sẽ bao gồm 1 ActivityMain với 4 Fragment trên đó, với Fragment Măc định là FragmentList,đây là Fragment sẽ Load danh sách kho hàng ra.<br>
+  _Tiếp theo đó khi kéo qua hoặc click vào cái nút navigate của Fragment ta sẽ qua Fragment Người dùng.<br>
+  Ở đây sẽ hiện lên đơn giản 1 Đổi mật khẩu hoặc đăng xuất. Nếu là Admin sẽ có thể dùng nút Xem Danh sách User. Khi click vào xem danh sách User sẽ chuyển qua ActivityUser ở đây sẽ có 1 Listview chứa tất cả User. Và có thể thêm xoá sửa. <br>
+  _Sau cùng khi kéo qua tiếp hoặc click vào navigate ta sẽ chuyển qua Phần thống kê. Nếu là Admin ta có thể xem thống kê Nhập và Xuất đồng thời 1 button để xem thêm danh sách Nhập Xuất. Click vào đó sẽ mở ActivityTicket, activity này sẽ chứa 1 listview hiển thị toàn bộ Ticket bao gồm nhập và xuất.Còn nếu là User thì sẽ không thể click vào nút đó. <br>
+  _Khi click vào nút (+) là một FloatingAddButton sẽ mở lên AddTicketActivity. <br>
   Trong AddTicketActivity sẽ có 2 fragment mặc định khi vào sẽ là <strong> Thêm Hàng Hoá</strong> và vuốt qua hoặc chọn vào nút <strong> Xuất </strong> ta sẽ chuyển qua fragment <strong> Xuất Hàng Hoá </strong>. Và ở đây ta sẽ sử dụng 1 Fragment duy nhất sau đó tạo ra 2 fragment con nhập xuất bằng cách <br>
   <code>
     FragmentCha FragmentNhapCon = new FragmentCha(***); <br>
@@ -74,9 +78,9 @@ _Nói tóm lại để cho đơn giản việc khác nhau giữa Admin và User 
     Việc xử lý hàm Add ở TicketService như sau:<br>
       .Validate <br>
       .Add <br>
-  >>> Và quan trọng nhất, bên trong TicketService ta phải tạo <b> 2 Method sau:  </b> <br>
-    + Một method sẽ gọi vào TicketDAO.getListNhap <br>
-    + Một method sẽ gọi vào TicketDAO.getListXuat <br>
+  >>> Và quan trọng nhất, bên trong TicketDAO ta phải tạo <b> 2 Method sau:  </b> <br>
+    + Một method sẽ gọi vào TicketService.getListNhap <br>
+    + Một method sẽ gọi vào TicketService.getListXuat <br>
   Ở TicketService ta sẽ thêm vào 2 câu lệnh querry, 2 câu lệnh querry này sẽ xuất ra dữ liệu với điều kiện query <b> WHERE Type =? </b> và ta sẽ định nghĩa cho 2 method đó.
   <<<
 
