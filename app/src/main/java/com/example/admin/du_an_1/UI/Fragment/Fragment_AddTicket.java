@@ -1,20 +1,16 @@
 package com.example.admin.du_an_1.UI.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.admin.du_an_1.R;
-import com.example.admin.du_an_1.UI.AddTicketActivity;
 
-public class Fragment_List extends Fragment implements View.OnClickListener {
-    FloatingActionButton fab;
+public class Fragment_AddTicket extends Fragment{
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,17 +20,11 @@ public class Fragment_List extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_list, container, false);
-        fab= (FloatingActionButton) view.findViewById(R.id.btnFAB_Add);
-        fab.setOnClickListener(this);
+        View view= inflater.inflate(R.layout.add_ticket_fragment, container, false);
+
 
 
 
         return view;
-    }
-
-    @Override
-    public void onClick(View view) {
-        startActivity(new Intent(getActivity(), AddTicketActivity.class));
     }
 }

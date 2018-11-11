@@ -13,4 +13,9 @@
             @drawable/splash_background
         </item>
     </style>
+    <!--Toolbar-->
+    <style name="MyToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="titleTextColor">@color/white</item>
+    </style>
 </resources>
