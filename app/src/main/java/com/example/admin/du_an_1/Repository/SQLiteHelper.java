@@ -33,20 +33,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     // Ticket TABLE
     public static String TABLE_TICKET_NAME ="TABLE_TICKET";
     public static String TICKET_ID="Id";
-    public static String TICKET_TITLE="Title";
     public static String TICKET_DATE="Date";
     public static String TICKET_TYPE="Type";
     public static String TICKET_PRODUCTID="ProductId";
     public static String TICKET_QUANTITY="Quantity";
-    //
-    //
-    // Storage TABLE
-    public static String TABLE_STORAGE_NAME ="TABLE_STORAGE";
-    public static String STORAGE_ID="Id";
-    public static String STORAGE_PRODUCTNAME="ProductName";
-    public static String STORAGE_PRODUCTCODE="ProductCode";
-    public static String STORAGE_QUANTITY="Quantity";
-    public static String STORAGE_DATE="Date";
+
     /////////////////////////////////////////
     ////////////////////////////////////////
     //// QUERY TABLE
@@ -75,20 +66,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /////////////////////////////////////
     public String CREATE_TABLE_TICKET= "CREATE TABLE " + TABLE_TICKET_NAME+" ( "+
             TICKET_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+
-            TICKET_TITLE+ " TEXT, "+
             TICKET_DATE+ " DATE, "+
             TICKET_TYPE+ " BOOLEAN, "+
             TICKET_PRODUCTID+" TEXT, "+
             TICKET_QUANTITY+" INTEGER )";
-    /////////////////////////////////////
-    // TABLE STORAGE
-    /////////////////////////////////////
-    public String CREATE_TABLE_STORAGE= "CREATE TABLE " + TABLE_STORAGE_NAME+" ( "+
-            STORAGE_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+
-            STORAGE_PRODUCTNAME+" TEXT, "+
-            STORAGE_PRODUCTCODE+" TEXT, "+
-            STORAGE_QUANTITY+" INTEGER, "+
-            STORAGE_DATE+ " DATE )";
     ///////////////////////////////////
     // CONSTRUCTOR
     //////////////////////////////////
@@ -102,7 +83,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_TABLE_PRODUCT);
         sqLiteDatabase.execSQL(CREATE_TABLE_CATEGORY);
         sqLiteDatabase.execSQL(CREATE_TABLE_TICKET);
-        sqLiteDatabase.execSQL(CREATE_TABLE_STORAGE);
     }
 
     @Override

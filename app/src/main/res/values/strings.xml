@@ -14,4 +14,15 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="import_form">Import Form</string>
+    <string name="export_form">Export Form</string>
+    <string name="quantity">Quantity</string>
+    <string name="productId">Product Id</string>
+    <string name="productName">Product Name</string>
+    <string name="productCode">Product Code</string>
+    <string name="cateogory">Category</string>
+    <string name="Date">Date</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+
 </resources>

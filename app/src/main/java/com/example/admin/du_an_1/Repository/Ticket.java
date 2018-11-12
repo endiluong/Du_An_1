@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class Ticket implements Serializable {
     private String id;
-    private String tittle;
     private String date;
     private Boolean type;
     private String productId;
@@ -13,9 +12,8 @@ public class Ticket implements Serializable {
     public Ticket() {
     }
 
-    public Ticket(String id, String tittle, String date, Boolean type, String productId, int quantity) {
+    public Ticket(String id, String date, Boolean type, String productId, int quantity) {
         this.id = id;
-        this.tittle = tittle;
         this.date = date;
         this.type = type;
         this.productId=productId;
@@ -29,14 +27,6 @@ public class Ticket implements Serializable {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getTittle() {
-        return tittle;
-    }
-
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
     }
 
     public String getDate() {

@@ -14,7 +14,6 @@ public class AddTicketActivity extends AppCompatActivity {
     ViewPager viewPager;
     TabLayout tabLayout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +24,9 @@ public class AddTicketActivity extends AppCompatActivity {
         viewPager=findViewById(R.id.viewPagerTicket);
 
         tabAdapter= new TabAdapter(getSupportFragmentManager());
-        tabAdapter.addFragment(new Fragment_AddTicket(), "Input");
-        tabAdapter.addFragment(new Fragment_AddTicket(), "Output");
+        tabAdapter.addFragment(Fragment_AddTicket.newInstance("Import"),"Import");
+        tabAdapter.addFragment(Fragment_AddTicket.newInstance("Export"),"Export");
+
 
         viewPager.setAdapter(tabAdapter);
         tabLayout.setupWithViewPager(viewPager);

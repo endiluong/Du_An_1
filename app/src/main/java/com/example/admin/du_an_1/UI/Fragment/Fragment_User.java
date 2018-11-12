@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.admin.du_an_1.R;
 
-public class Fragment_Statitic extends Fragment{
+public class Fragment_User extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,8 +19,7 @@ public class Fragment_Statitic extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_statitic,container,false);
-
+        View view=inflater.inflate(R.layout.fragment_user,container,false);
 
         return view;
     }

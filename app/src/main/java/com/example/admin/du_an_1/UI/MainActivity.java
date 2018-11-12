@@ -8,6 +8,8 @@ import android.os.Bundle;
 import com.example.admin.du_an_1.Adapter.TabAdapter;
 import com.example.admin.du_an_1.R;
 import com.example.admin.du_an_1.UI.Fragment.Fragment_List;
+import com.example.admin.du_an_1.UI.Fragment.Fragment_Statitic;
+import com.example.admin.du_an_1.UI.Fragment.Fragment_User;
 
 public class MainActivity extends AppCompatActivity {
     private TabAdapter tabAdapter;
@@ -26,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         tabAdapter= new TabAdapter(getSupportFragmentManager());
         tabAdapter.addFragment(new Fragment_List(), "Storage");
-        tabAdapter.addFragment(new Fragment_List(), "Users");
-        tabAdapter.addFragment(new Fragment_List(), "Statitics");
+        tabAdapter.addFragment(new Fragment_User(), "Users");
+        tabAdapter.addFragment(new Fragment_Statitic(), "Statitics");
         viewPager.setAdapter(tabAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
