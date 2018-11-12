@@ -36,6 +36,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSignUp.setOnClickListener(this);
     }
 
+
+
+
     public void logInClicked(String username, String password) {
         if (this.loginService.Login(username, password)) {
             startActivity(new Intent(this, MainActivity.class));

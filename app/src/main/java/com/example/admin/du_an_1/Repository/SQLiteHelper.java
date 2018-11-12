@@ -21,6 +21,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static String PRODUCT_ID ="Id";
     public static String PRODUCT_NAME="Name";
     public static String PRODUCT_CODE="Code";
+    public static String PRODUCT_CATEGOY="Category";
+    // Category TABLE
+    public static String TABLE_CATEGORY_NAME ="TABLE_CATEGORY";
+    public static String CATEGORY_ID ="Id";
+    public static String CATEGORY_NAME="Name";
     //
     //
     // Ticket TABLE
@@ -59,6 +64,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             PRODUCT_CODE+ " TEXT, "+
             PRODUCT_NAME+ " TEXT )";
     /////////////////////////////////////
+    // TABLE CATEGORY
+    /////////////////////////////////////
+    public String CREATE_TABLE_CATEGORY= "CREATE TABLE " + TABLE_CATEGORY_NAME+" ( "+
+            PRODUCT_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+
+            PRODUCT_CODE+ " TEXT )";
+    /////////////////////////////////////
     // TABLE TICKET
     /////////////////////////////////////
     public String CREATE_TABLE_TICKET= "CREATE TABLE " + TABLE_TICKET_NAME+" ( "+
@@ -77,7 +88,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             STORAGE_PRODUCTNAME+" TEXT, "+
             STORAGE_PRODUCTCODE+" TEXT, "+
             STORAGE_QUANTITY+" INTEGER, "+
-            STORAGE_DATE+ " TEXT )";
+            STORAGE_DATE+ " DATE )";
     ///////////////////////////////////
     // CONSTRUCTOR
     //////////////////////////////////
@@ -89,6 +100,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_TABLE_USER);
         sqLiteDatabase.execSQL(CREATE_TABLE_PRODUCT);
+        sqLiteDatabase.execSQL(CREATE_TABLE_CATEGORY);
         sqLiteDatabase.execSQL(CREATE_TABLE_TICKET);
         sqLiteDatabase.execSQL(CREATE_TABLE_STORAGE);
     }
