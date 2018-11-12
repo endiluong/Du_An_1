@@ -25,11 +25,9 @@ public class MainActivity extends AppCompatActivity {
         viewPager=findViewById(R.id.viewPager);
 
         tabAdapter= new TabAdapter(getSupportFragmentManager());
-        tabAdapter.addFragment(new Fragment_List(), "Fragment List 1");
-        tabAdapter.addFragment(new Fragment_List(), "Fragment List 2");
-        tabAdapter.addFragment(new Fragment_List(), "Fragment List 3");
-        tabAdapter.addFragment(new Fragment_List(), "Fragment List 4");
-
+        tabAdapter.addFragment(new Fragment_List(), "Storage");
+        tabAdapter.addFragment(new Fragment_List(), "Users");
+        tabAdapter.addFragment(new Fragment_List(), "Statitics");
         viewPager.setAdapter(tabAdapter);
         tabLayout.setupWithViewPager(viewPager);
 

@@ -22,6 +22,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static String PRODUCT_NAME="Name";
     public static String PRODUCT_CODE="Code";
     public static String PRODUCT_CATEGOY="Category";
+    //
+    //
     // Category TABLE
     public static String TABLE_CATEGORY_NAME ="TABLE_CATEGORY";
     public static String CATEGORY_ID ="Id";
@@ -34,8 +36,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static String TICKET_TITLE="Title";
     public static String TICKET_DATE="Date";
     public static String TICKET_TYPE="Type";
-    public static String TICKET_PRODUCTNAME="ProductName";
-    public static String TICKET_PRODUCTCODE="ProductCode";
+    public static String TICKET_PRODUCTID="ProductId";
     public static String TICKET_QUANTITY="Quantity";
     //
     //
@@ -77,8 +78,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             TICKET_TITLE+ " TEXT, "+
             TICKET_DATE+ " DATE, "+
             TICKET_TYPE+ " BOOLEAN, "+
-            TICKET_PRODUCTNAME+" TEXT, "+
-            TICKET_PRODUCTCODE+" TEXT, "+
+            TICKET_PRODUCTID+" TEXT, "+
             TICKET_QUANTITY+" INTEGER )";
     /////////////////////////////////////
     // TABLE STORAGE

@@ -7,20 +7,18 @@ public class Ticket implements Serializable {
     private String tittle;
     private String date;
     private Boolean type;
-    private String productName;
-    private String productCode;
+    private String productId;
     private int quantity;
 
     public Ticket() {
     }
 
-    public Ticket(String id, String tittle, String date, Boolean type, String productName, String productCode, int quantity) {
+    public Ticket(String id, String tittle, String date, Boolean type, String productId, int quantity) {
         this.id = id;
         this.tittle = tittle;
         this.date = date;
         this.type = type;
-        this.productName = productName;
-        this.productCode = productCode;
+        this.productId=productId;
         this.quantity = quantity;
     }
 
@@ -57,20 +55,12 @@ public class Ticket implements Serializable {
         this.type = type;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public int getQuantity() {
