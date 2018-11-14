@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         tabAdapter= new TabAdapter(getSupportFragmentManager());
         tabAdapter.addFragment(new Fragment_List(), "Storage");
         tabAdapter.addFragment(new Fragment_User(), "Users");
-        tabAdapter.addFragment(new Fragment_Statitic(), "Statitics");
+        tabAdapter.addFragment(new Fragment_Statitic(), "Statistics");
         viewPager.setAdapter(tabAdapter);
         tabLayout.setupWithViewPager(viewPager);
 

@@ -30,7 +30,7 @@ public class daoTicket {
             temp = new Ticket();
             temp.setId(c.getString(c.getColumnIndex(SQLiteHelper.TICKET_ID)));
             temp.setType(c.getInt((c.getColumnIndex(SQLiteHelper.TICKET_TYPE)))> 0 );
-            temp.setProductId(c.getString(c.getColumnIndex(SQLiteHelper.TICKET_ID)));
+            temp.setproductName(c.getString(c.getColumnIndex(SQLiteHelper.TICKET_PRODUCTNAME)));
             temp.setQuantity(c.getInt(c.getColumnIndex(SQLiteHelper.TICKET_QUANTITY)));
             temp.setDate(c.getString(c.getColumnIndex(SQLiteHelper.TICKET_DATE)));
             result.add(temp);
@@ -53,7 +53,7 @@ public class daoTicket {
         ContentValues values = new ContentValues();
         values.put(SQLiteHelper.TICKET_ID, datamodel.getId());
         values.put(SQLiteHelper.TICKET_TYPE, datamodel.getType());
-        values.put(SQLiteHelper.TICKET_PRODUCTID, datamodel.getProductId());
+        values.put(SQLiteHelper.TICKET_PRODUCTNAME, datamodel.getproductName());
         values.put(SQLiteHelper.TICKET_QUANTITY, datamodel.getQuantity());
         values.put(SQLiteHelper.TICKET_DATE, datamodel.getDate());
         return db.insert(SQLiteHelper.TABLE_TICKET_NAME, null, values);
@@ -63,7 +63,7 @@ public class daoTicket {
         ContentValues values = new ContentValues();
         values.put(SQLiteHelper.TICKET_ID, datamodel.getId());
         values.put(SQLiteHelper.TICKET_TYPE, datamodel.getType());
-        values.put(SQLiteHelper.TICKET_PRODUCTID, datamodel.getProductId());
+        values.put(SQLiteHelper.TICKET_PRODUCTNAME, datamodel.getproductName());
         values.put(SQLiteHelper.TICKET_QUANTITY, datamodel.getQuantity());
         values.put(SQLiteHelper.TICKET_DATE, datamodel.getDate());
         return db.update(SQLiteHelper.TABLE_TICKET_NAME, values, "id=?", new String[]{String.valueOf(datamodel.getId())});

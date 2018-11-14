@@ -35,7 +35,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static String TICKET_ID="Id";
     public static String TICKET_DATE="Date";
     public static String TICKET_TYPE="Type";
-    public static String TICKET_PRODUCTID="ProductId";
+    public static String TICKET_PRODUCTNAME="ProductName";
     public static String TICKET_QUANTITY="Quantity";
 
     /////////////////////////////////////////
@@ -68,7 +68,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             TICKET_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+
             TICKET_DATE+ " DATE, "+
             TICKET_TYPE+ " BOOLEAN, "+
-            TICKET_PRODUCTID+" TEXT, "+
+            TICKET_PRODUCTNAME+" TEXT, "+
             TICKET_QUANTITY+" INTEGER )";
     ///////////////////////////////////
     // CONSTRUCTOR
