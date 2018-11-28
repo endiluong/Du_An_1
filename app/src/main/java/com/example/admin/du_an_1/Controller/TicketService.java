@@ -14,10 +14,6 @@ public class TicketService {
         this.context = context;
     }
 
-    public String getTitle(Bundle args) {
-        return args.getCharSequence("title", "NO TITLE FOUND").toString();
-    }
-
     public Boolean setType(String typeString) {
         if (typeString.equals("Export")) {
             return true ;
