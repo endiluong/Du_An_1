@@ -21,7 +21,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static String PRODUCT_ID ="Id";
     public static String PRODUCT_NAME="Name";
     public static String PRODUCT_CODE="Code";
-    public static String PRODUCT_CATEGOY="Category";
+    public static String PRODUCT_CATEGORY="Category";
     //
     //
     // Category TABLE
@@ -54,13 +54,14 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public String CREATE_TABLE_PRODUCT= "CREATE TABLE " + TABLE_PRODUCT_NAME+" ( "+
             PRODUCT_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+
             PRODUCT_CODE+ " TEXT, "+
+            PRODUCT_CATEGORY+ "TEXT, " +
             PRODUCT_NAME+ " TEXT )";
     /////////////////////////////////////
     // TABLE CATEGORY
     /////////////////////////////////////
     public String CREATE_TABLE_CATEGORY= "CREATE TABLE " + TABLE_CATEGORY_NAME+" ( "+
-            PRODUCT_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+
-            PRODUCT_CODE+ " TEXT )";
+            CATEGORY_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+
+            CATEGORY_NAME+ " TEXT )";
     /////////////////////////////////////
     // TABLE TICKET
     /////////////////////////////////////
@@ -79,6 +80,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+
         sqLiteDatabase.execSQL(CREATE_TABLE_USER);
         sqLiteDatabase.execSQL(CREATE_TABLE_PRODUCT);
         sqLiteDatabase.execSQL(CREATE_TABLE_CATEGORY);

@@ -1,20 +1,26 @@
 package com.example.admin.du_an_1.Controller;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.widget.Toast;
 
 import com.example.admin.du_an_1.DAO.daoCategory;
 import com.example.admin.du_an_1.Repository.Category;
+import com.example.admin.du_an_1.Repository.Users;
+import com.example.admin.du_an_1.UI.CategoryActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 public class CategoryService {
     Context context;
     Category cat;
     daoCategory myDAO;
 
-    Category Cat;
 
     List<Category> lsCat;
 
@@ -23,12 +29,8 @@ public class CategoryService {
         myDAO = daoCategory.getInstance( context );
     }
 
-    public void delCat(int index){
-
+    public void  delCat(final int index){
         // Do Delete
-        if (lsCat != null) {
-            myDAO.deleteCat( index );
-        }
     }
 
     public Boolean updateCategory(String Name){
