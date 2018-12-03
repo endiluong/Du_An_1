@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.admin.du_an_1.DAO.daoCategory;
@@ -21,6 +22,7 @@ public class CategoryService {
     Category cat;
     daoCategory myDAO;
 
+    ArrayList<Category> arrCat;
 
     List<Category> lsCat;
 

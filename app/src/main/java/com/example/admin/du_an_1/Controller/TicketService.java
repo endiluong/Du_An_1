@@ -2,13 +2,20 @@ package com.example.admin.du_an_1.Controller;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.example.admin.du_an_1.DAO.daoCategory;
+import com.example.admin.du_an_1.Repository.Category;
 import com.example.admin.du_an_1.Repository.Product;
 import com.example.admin.du_an_1.Repository.Ticket;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TicketService {
     Context context;
+    daoCategory daoCat;
 
     public TicketService(Context context) {
         this.context = context;
@@ -39,4 +46,5 @@ public class TicketService {
         Toast.makeText(context, "Add Export", Toast.LENGTH_SHORT).show();
         // Add Ticket to TABLE with type export
     }
+
 }
