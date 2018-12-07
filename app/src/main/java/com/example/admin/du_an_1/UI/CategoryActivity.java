@@ -48,7 +48,7 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
         btnAdd_Category.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog_Add();
+                Dialog_Add(view);
             }
         } );
     }
@@ -76,10 +76,12 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
     // Sử dụng Dialog để thêm Thể Loại. //
     //
     //
-    public void Dialog_Add(){
+
+    public void Dialog_Add(View view){
 
         LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate( R.layout.dialog_add_category,null );
+        view = inflater.inflate( R.layout.dialog_add_category,null );
+
 
         final EditText edtDialog_addCategory = (EditText)view.findViewById( R.id.edtDialog_addCategory );
 
@@ -132,5 +134,11 @@ public class CategoryActivity extends AppCompatActivity implements AdapterView.O
 
                     }
                 } ).create().show();
+    }
+
+    public void dialogDel(final int position){
+
+        //        CategoryService serCat = new CategoryService( getBaseContext() );
+        //        serCat.delCat( i );
     }
 }

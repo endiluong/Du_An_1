@@ -63,7 +63,10 @@ public class daoProducts {
     }
     //Delete by Id
     public int deleteCourse(int id) {
-        return db.delete(SQLiteHelper.TABLE_USER_NAME, "id=?", new String[]{String.valueOf(id)});
+        return db.delete(SQLiteHelper.TABLE_PRODUCT_NAME, "Code=?", new String[]{String.valueOf(id)});
+    }
+    public int deleteproduct(Product contact) {
+        return db.delete(SQLiteHelper.TABLE_PRODUCT_NAME, " Code=? ", new String[]{contact.getCode()});
     }
     ///////////////////////////////////////////////////
     // CREATE INSTANCE

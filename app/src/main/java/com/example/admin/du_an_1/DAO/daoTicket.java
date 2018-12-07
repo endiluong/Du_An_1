@@ -48,6 +48,14 @@ public class daoTicket {
         ArrayList<Ticket> list = getDataModels(sql, Id);
         return list.get(0);
     }
+
+    // get by name
+    public Ticket getByName(String Name) {
+        String sql = "SELECT * FROM " + SQLiteHelper.TABLE_TICKET_NAME + " WHERE ProductName=? ";
+        ArrayList<Ticket> list = getDataModels(sql, Name);
+        return list.get(0);
+    }
+
     // Add
     public long insertTicket(Ticket datamodel) {
         ContentValues values = new ContentValues();

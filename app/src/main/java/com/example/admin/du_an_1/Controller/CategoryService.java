@@ -21,9 +21,7 @@ public class CategoryService {
     Context context;
     Category cat;
     daoCategory myDAO;
-
     ArrayList<Category> arrCat;
-
     List<Category> lsCat;
 
     public CategoryService(Context context) {
