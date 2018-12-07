@@ -1,9 +1,13 @@
 package com.example.admin.du_an_1.UI;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.admin.du_an_1.Adapter.TabAdapter;
 import com.example.admin.du_an_1.R;
@@ -33,5 +37,27 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(tabAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
+        final Toolbar toolbar = findViewById( R.id.toolbar );
+        setSupportActionBar( toolbar );
+
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate( R.menu.menu,menu  );
+        return super.onCreateOptionsMenu( menu );
+    }
+
+
+    //////////////////////////////
+//// PUSH ITEMS IN ACTION_BAR. //
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.listCat:
+                startActivity( new Intent( MainActivity.this, CategoryActivity.class ) );
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -10,6 +10,8 @@ import com.example.admin.du_an_1.Repository.Category;
 
 import java.util.ArrayList;
 
+import static com.example.admin.du_an_1.Repository.SQLiteHelper.CATEGORY_ID;
+
 public class daoCategory {
     private SQLiteDatabase db;
     private static daoCategory instance;
@@ -17,7 +19,7 @@ public class daoCategory {
     public daoCategory(Context context) {
         SQLiteHelper sqlHelper = new SQLiteHelper(context);
         db = sqlHelper.getWritableDatabase();
-    }   
+    }
     // GET ONE ITEM
     //
     //
@@ -45,23 +47,28 @@ public class daoCategory {
         return list.get(0);
     }
     // Add
-    public long insertUser(Category datamodel) {
+    public long insertCat(Category datamodel) {
         ContentValues values = new ContentValues();
-        values.put(SQLiteHelper.CATEGORY_ID, datamodel.getId());
         values.put(SQLiteHelper.CATEGORY_NAME, datamodel.getName());
 
         return db.insert(SQLiteHelper.TABLE_CATEGORY_NAME, null, values);
     }
     //Update
-    public int updateUser(Category datamodel) {
+    public int updateCat(Category datamodel) {
         ContentValues values = new ContentValues();
-        values.put(SQLiteHelper.CATEGORY_ID, datamodel.getId());
+        values.put( CATEGORY_ID, datamodel.getId());
         values.put(SQLiteHelper.CATEGORY_NAME, datamodel.getName());
-        return db.update(SQLiteHelper.TABLE_CATEGORY_NAME, values, "id=?", new String[]{String.valueOf(datamodel.getId())});
+        return db.update(SQLiteHelper.TABLE_CATEGORY_NAME, values, "Id=?", new String[]{String.valueOf(datamodel.getId())});
     }
+
+     ////////////////////////////////////
+    //chỉnh sửa lại int ==> Category. //
     //Delete by Id
-    public int deleteUser(int id) {
-        return db.delete(SQLiteHelper.TABLE_CATEGORY_NAME, "id=?", new String[]{String.valueOf(id)});
+//    public int deleteCat(int id) {
+//        return db.delete(SQLiteHelper.TABLE_CATEGORY_NAME, "Id=?", new String[]{String.valueOf(id)});
+//    }
+    public int deleteCat(Category category) {
+        return db.delete(SQLiteHelper.TABLE_CATEGORY_NAME, "Id=?", new String[]{String.valueOf(category.getId())});
     }
     ///////////////////////////////////////////////////
     // CREATE INSTANCE
