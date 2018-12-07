@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     SignUpService signUpService;
     EditText etUsername, etPassword;
     Button btnLogin, btnSignUp;
+    Boolean isAdmin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSignUp = findViewById(R.id.btnSignUp);
         //CREATE INSTANCE FOR  SERVICE
         loginService = new LoginService(this);
-        signUpService= new SignUpService(this);
+        signUpService = new SignUpService(this);
 
         //
         btnLogin.setOnClickListener(this);
@@ -37,21 +38,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-
-
     public void logInClicked(String username, String password) {
+        Intent intent = new Intent(this, MainActivity.class);
         if (this.loginService.Login(username, password)) {
-            startActivity(new Intent(this, MainActivity.class));
+            if (username.equals("admin")) {
+                isAdmin = true;
+                intent.putExtra("name", isAdmin);
+            } else {
+                isAdmin = false;
+                //user => is admin=false
+                intent.putExtra("name", isAdmin);
+            }
+            startActivity(intent);
         } else {
             Toast.makeText(this, "Wrong UserName or Password", Toast.LENGTH_SHORT).show();
         }
     }
-    public void signUpClick(String username, String password){
-        if( this.signUpService.SignUp(username, password))
-        {
-            Toast.makeText(this, "User Created with Username: "+ username, Toast.LENGTH_SHORT).show();
-        }
-        else{
+
+    public void signUpClick(String username, String password) {
+        if (this.signUpService.SignUp(username, password)) {
+            Toast.makeText(this, "User Created with Username: " + username, Toast.LENGTH_SHORT).show();
+        } else {
             Toast.makeText(this, "Some thing went wrong, User resignation failed, try again !", Toast.LENGTH_SHORT).show();
         }
     }
