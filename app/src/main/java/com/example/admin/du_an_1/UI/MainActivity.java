@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private TabAdapter tabAdapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-
+    private Boolean isAdmin = false;
 
 
     @Override
@@ -27,13 +28,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Boolean isAdmin = getIntent().getExtras().getBoolean("name");
+        String userName= getIntent().getExtras().getString("userName");
+
+
+
+
         tabLayout=findViewById(R.id.tabLayout);
         viewPager=findViewById(R.id.viewPager);
 
         tabAdapter= new TabAdapter(getSupportFragmentManager());
-        tabAdapter.addFragment(new Fragment_List(), "Storage");
-        tabAdapter.addFragment(new Fragment_User(), "Users");
-        tabAdapter.addFragment(new Fragment_Statitic(), "Statistics");
+        //Set Argument to send to Fragment to user Admin Right
+        //
+        //
+        Bundle bundle = new Bundle();
+        Bundle bundle2 = new Bundle();
+        bundle.putBoolean("isAdmin",isAdmin);
+        bundle2.putBoolean("isAdmin",isAdmin);
+        bundle2.putString("userName",userName);
+
+
+        Fragment_List fragmentList= new Fragment_List();
+        Fragment_User fragmentUser= new Fragment_User();
+        Fragment_Statitic fragmentStatitic= new Fragment_Statitic();
+        fragmentList.setArguments(bundle);
+        fragmentUser.setArguments(bundle2);
+        fragmentStatitic.setArguments(bundle);
+        //
+        //
+        //
+
+        tabAdapter.addFragment(fragmentList, "Storage");
+        tabAdapter.addFragment(fragmentUser, "Users");
+        tabAdapter.addFragment(fragmentStatitic, "Statistics");
         viewPager.setAdapter(tabAdapter);
         tabLayout.setupWithViewPager(viewPager);
 

@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.admin.du_an_1.Adapter.ProductAdapter;
 import com.example.admin.du_an_1.DAO.daoProducts;
@@ -39,7 +41,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
     daoTicket DaoTicket;
     List<Product> listProduct;
     List<Ticket> listTeck;
-
+    Boolean isAdmin= false;
 
     ProductAdapter productAdapter;
     @Override
@@ -48,7 +50,8 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
         context = getActivity();
         DaoProducts = daoProducts.getInstance(context);
         DaoTicket = daoTicket.getInstance(context);
-
+        isAdmin= getArguments().getBoolean("isAdmin");
+        Log.i(">>>>",""+ isAdmin);
 
 
     }
@@ -86,16 +89,20 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
 
                 //
 
-                // btn xoa
                 btnxoa.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        DaoProducts.deleteproduct(productdilog);
-                        listProduct = DaoProducts.getAllItem();
-                        productAdapter = new ProductAdapter(context,listProduct);
-                        productList.setAdapter(productAdapter);
-                        productList.deferNotifyDataSetChanged();
-                        dialog.cancel();
+                        // btn xoa
+                        if(isAdmin) {
+                            DaoProducts.deleteproduct(productdilog);
+                            listProduct = DaoProducts.getAllItem();
+                            productAdapter = new ProductAdapter(context, listProduct);
+                            productList.setAdapter(productAdapter);
+                            productList.deferNotifyDataSetChanged();
+                            dialog.cancel();
+                        } else{
+                            Toast.makeText(context, "Only Admin can Delete", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 // button huy
@@ -116,7 +123,6 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
     @Override
     public void onResume() {
         listTeck = DaoTicket.getAllItem();
-
         listProduct = DaoProducts.getAllItem();
         productAdapter = new ProductAdapter(context,listProduct);
         productList.setAdapter(productAdapter);

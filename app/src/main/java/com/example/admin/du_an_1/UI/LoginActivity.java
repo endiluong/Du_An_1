@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 isAdmin = false;
                 //user => is admin=false
                 intent.putExtra("name", isAdmin);
+                intent.putExtra("userName",username);
             }
             startActivity(intent);
         } else {
