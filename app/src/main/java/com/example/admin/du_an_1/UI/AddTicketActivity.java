@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.admin.du_an_1.Adapter.TabAdapter;
 import com.example.admin.du_an_1.Controller.CategoryService;
@@ -126,8 +127,10 @@ public class AddTicketActivity extends AppCompatActivity implements View.OnClick
 //                        asdasdasdasdasdasd
 //                        asdasdasdasdasdasd
 //                                Product temp = new Product(id,name,iasd,asdasd,);
-                if (onAddClicked(addTicket(), addproduct(), "Import")){
-                    this.finish();
+                if (validate() == true){
+                    if (onAddClicked(addTicket(), addproduct(), "Import")){
+                        this.finish();
+                    }
                 }
                 break;
             case (R.id.btnCancel):
@@ -179,6 +182,30 @@ public class AddTicketActivity extends AppCompatActivity implements View.OnClick
         myTicket.setproductName(etProductname.getText().toString());
         myTicket.setQuantity(Integer.parseInt(etQuantity.getText().toString()));
         return myTicket;
+    }
+
+    //validate
+    public boolean validate(){
+        if (etProductcode.getText().toString().equals("")){
+            Toast.makeText(this, "Product code null", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (etProductname.getText().toString().equals("")){
+            Toast.makeText(this, "Peoduct name null", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+         if (etQuantity.getText().toString().equals("")){
+            Toast.makeText(this, "Quantily null", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (etQuantity.getText().toString().equals("0")){
+             Toast.makeText(this, "Khong dc nhap Quanlity = 0", Toast.LENGTH_SHORT).show();
+             return false;
+         }
+         if (spnCategory.getCount()==0){
+             Toast.makeText(this, "Category null", Toast.LENGTH_SHORT).show();
+             return false;
+         }
+        return true;
     }
 
     public boolean onAddClicked(Ticket ticket, Product product, String tittle) {

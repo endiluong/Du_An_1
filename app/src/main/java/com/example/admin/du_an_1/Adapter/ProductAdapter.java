@@ -7,10 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
+import com.example.admin.du_an_1.DAO.daoTicket;
 import com.example.admin.du_an_1.DAO.daoProducts;
 import com.example.admin.du_an_1.R;
 import com.example.admin.du_an_1.Repository.Product;
+import com.example.admin.du_an_1.Repository.Ticket;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -20,10 +21,13 @@ import java.util.regex.Pattern;
 
 public class ProductAdapter extends BaseAdapter {
     List<Product> arrProduct;
+    List<Product> arrTicket;
     Context context;
     LayoutInflater inflater;
     daoProducts daoProducts;
     private List<Product> arrProductPhu;
+    Ticket tempp;
+    daoTicket DaoTicket;
 
     public ProductAdapter(Context context, List<Product> arrProduct){
         super();
@@ -31,6 +35,7 @@ public class ProductAdapter extends BaseAdapter {
         this.arrProduct = arrProduct;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         daoProducts = new daoProducts(context);
+        DaoTicket = new daoTicket(context);
 
         this.arrProductPhu = new ArrayList<Product>();
         this.arrProductPhu.addAll(arrProduct);
@@ -81,6 +86,7 @@ public class ProductAdapter extends BaseAdapter {
         TextView tvProName;
         TextView tvProCode;
         TextView tvProCat;
+        TextView tvquan;
     }
 
     @Override
@@ -92,6 +98,7 @@ public class ProductAdapter extends BaseAdapter {
             holder.tvProName = (TextView) convertview.findViewById(R.id.tvProName);
             holder.tvProCode = (TextView) convertview.findViewById(R.id.tvProCode);
             holder.tvProCat = (TextView) convertview.findViewById(R.id.tvProCat);
+            holder.tvquan = (TextView) convertview.findViewById(R.id.tvsoluongadp);
             convertview.setTag(holder);
         } else
             holder = (ViewHolder) convertview.getTag();
@@ -99,15 +106,19 @@ public class ProductAdapter extends BaseAdapter {
         holder.tvProName.setText(_entry.getName());
         holder.tvProCode.setText(_entry.getCode());
         holder.tvProCat.setText(_entry.getCategory());
+
+        tempp = new Ticket();
+        tempp = DaoTicket.getByName(_entry.getName());
+        holder.tvquan.setText(String.valueOf(tempp.getQuantity()));
         return convertview;
     }
 
-    @Override
-    public void notifyDataSetChanged() {
-        super.notifyDataSetChanged();
-    }
-    public void changeDataset(List<Product> items){
-        this.arrProduct = items;
-        notifyDataSetChanged();
-    }
+//    @Override
+//    public void notifyDataSetChanged() {
+//        super.notifyDataSetChanged();
+//    }
+//    public void changeDataset(List<Product> items){
+//        this.arrProduct = items;
+//        notifyDataSetChanged();
+//    }
 }

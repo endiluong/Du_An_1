@@ -50,7 +50,7 @@ public class daoTicket {
     }
     // get by name
     public Ticket getByName(String Name) {
-        String sql = "SELECT * FROM " + SQLiteHelper.TABLE_TICKET_NAME + " WHERE ProductName=? ";
+        String sql = " SELECT * FROM " + SQLiteHelper.TABLE_TICKET_NAME + " WHERE ProductName=? ";
         ArrayList<Ticket> list = getDataModels(sql, Name);
         return list.get((list.size()-1));
     }

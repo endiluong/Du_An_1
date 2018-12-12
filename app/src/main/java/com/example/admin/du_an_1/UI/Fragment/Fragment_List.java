@@ -73,13 +73,37 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
         etsearch = (EditText)view.findViewById(R.id.etsearch);
         productList= (ListView) view.findViewById(R.id.lv_product);
         fab.setOnClickListener(this);
+
+        // et search view
+        etsearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String setSearch = remoAccent(charSequence.toString());
+                productAdapter.filter(setSearch.trim());
+                productAdapter.notifyDataSetChanged();
+                productList.setAdapter(productAdapter);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String setSearch = remoAccent(editable.toString());
+                productAdapter.filter(setSearch.trim());
+                productAdapter.notifyDataSetChanged();
+                productList.setAdapter(productAdapter);
+            }
+        });
+
         // add products up list
         productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               List<Product>  listproduct1 = DaoProducts.getAllItem();
-               //List<Ticket>  listticket1 = DaoTicket.getAllItem();
-               final Product productdilog = listproduct1.get(i);
+                              //List<Ticket>  listticket1 = DaoTicket.getAllItem();
+               final Product productdilog = listProduct.get(i);
                final Ticket ticket1 = DaoTicket.getByName(productdilog.getName());
 
                 final Dialog dialog = new Dialog(getActivity());
@@ -137,7 +161,17 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                                     temp.setproductName(productdilog.getName());
                                     temp.setQuantity((ticket1.getQuantity()-Integer.parseInt(etsoluongxuat.getText().toString())));
                                     temp.setDate(date);
-                                    DaoTicket.insertTicket(temp);
+                                    if (temp.getQuantity()==0){
+                                        DaoTicket.insertTicket(temp);
+                                        DaoProducts.deleteproduct(productdilog);
+                                        listProduct = DaoProducts.getAllItem();
+                                        productAdapter = new ProductAdapter(context, listProduct);
+                                        productList.setAdapter(productAdapter);
+                                        productList.deferNotifyDataSetChanged();
+                                        }else {
+                                        DaoTicket.insertTicket(temp);
+                                    }
+
                                     Toast.makeText(getActivity(), "Xuat kho thanh cong", Toast.LENGTH_SHORT).show();
                                     dialogxuat.cancel();
                                 }
@@ -190,7 +224,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
         return view;
     }
 
-
+// validate so luong xuat be hon so luong co
     public boolean validate(int a, int b){
         if(a<b){
             Toast.makeText(getActivity(), "So luong product khong du", Toast.LENGTH_SHORT).show();
@@ -206,30 +240,6 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
         productAdapter = new ProductAdapter(context,listProduct);
         productList.setAdapter(productAdapter);
         productList.deferNotifyDataSetChanged();
-
-
-        etsearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String setSearch = remoAccent(charSequence.toString());
-                productAdapter.filter(setSearch.trim());
-                productAdapter.notifyDataSetChanged();
-                productList.setAdapter(productAdapter);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                String setSearch = remoAccent(editable.toString());
-                productAdapter.filter(setSearch.trim());
-                productAdapter.notifyDataSetChanged();
-                productList.setAdapter(productAdapter);
-            }
-        });
         super.onResume();
     }
 
