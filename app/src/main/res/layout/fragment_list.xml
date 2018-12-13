@@ -3,9 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_height="match_parent">
-
+    <EditText
+        android:hint="Search"
+        android:id="@+id/etsearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <ListView
+        android:layout_below="@+id/etsearch"
         android:id="@+id/lv_product"
         android:layout_width="match_parent"
         android:layout_height="503dp"

@@ -26,6 +26,7 @@ public class TicketService {
     daoCategory daoCat;
     daoProducts DaoProducts;
     daoTicket DaoTicket;
+    List<Product> lis;
 
     public TicketService(Context context) {
         this.context = context;
@@ -54,12 +55,29 @@ public class TicketService {
 
         // if validate true >>add sucess
       //  validateTicket(product,ticket);
+    lis = new ArrayList<>();
+        lis = DaoProducts.getAllItem();
         if (validateTicket(product,ticket)) {
-            DaoTicket.insertTicket(ticket);
-            DaoProducts.insertProduct(product);
-            Toast.makeText(context, "Add Success", Toast.LENGTH_SHORT).show();
-            return true;
-        } else {
+            for (Product temp : lis){
+                String tempcode = temp.getCode();
+                String tempname = temp.getName();
+                if (tempcode.equals(product.getCode()) && tempname.equals(product.getName())){
+                    Ticket ticketold = DaoTicket.getByName(product.getName());
+                    Ticket tempp = new Ticket();
+                    tempp.setId(ticketold.getId());
+                    tempp.setproductName(ticketold.getproductName());
+                    tempp.setDate(ticket.getDate());
+                    tempp.setType(true);
+                    tempp.setQuantity(ticketold.getQuantity()+(ticket.getQuantity()));
+                    DaoTicket.updateTicket(tempp);
+                    return true;
+                }
+            }
+                DaoTicket.insertTicket(ticket);
+                DaoProducts.insertProduct(product);
+                Toast.makeText(context, "Add Success", Toast.LENGTH_SHORT).show();
+                return true;
+        }else{
             //handle error
             Toast.makeText(context, "Add Fail", Toast.LENGTH_SHORT).show();
             return false;
@@ -71,15 +89,21 @@ public class TicketService {
         List<Ticket> listticket = DaoTicket.getAllItem();
         String strcodeproduct = product.getCode();
         int intquantity = ticket.getQuantity();
-        // em chuyen cai productname trong ticket sang productcode (Ten co the trung`)
         String codeTicket = ticket.getproductName();
         for (int i = 0; i<listproduct.size();i++){
             Product temp = listproduct.get(i);
-            if (strcodeproduct.equals(temp.getCode())){
-                Toast.makeText(context, "Product code exits", Toast.LENGTH_SHORT).show();
+            if (strcodeproduct.equals(temp.getCode()) && product.getName().equals(temp.getName()) && product.getCategory().equals(temp.getCategory())){
+                return true;
+            }
+            else if (strcodeproduct.equals(temp.getCode()) && product.getName().equals(temp.getName())){
+                Toast.makeText(context, "Category must be " + temp.getCategory() , Toast.LENGTH_SHORT).show();
                 return false;
             }
-            else if (intquantity < 0){
+            else if (strcodeproduct.equals(temp.getCode())){
+                Toast.makeText(context, "Product code exits and Product name is " + temp.getName() , Toast.LENGTH_SHORT).show();
+                return false;
+             }
+                else if (intquantity < 0){
                 Toast.makeText(context, "Quantily epual 0", Toast.LENGTH_SHORT).show();
                 return false;
             }
