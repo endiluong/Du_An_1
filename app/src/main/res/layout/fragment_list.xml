@@ -7,10 +7,12 @@
     android:focusableInTouchMode="true"
     android:layout_height="match_parent">
     <EditText
-        android:hint="Search"
+        android:hint="Search by Name"
         android:id="@+id/etsearch"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+
+        />
     <ListView
         android:layout_below="@+id/etsearch"
         android:id="@+id/lv_product"
