@@ -31,6 +31,7 @@ import com.example.admin.du_an_1.Repository.Product;
 import com.example.admin.du_an_1.Repository.Ticket;
 import com.example.admin.du_an_1.UI.AddTicketActivity;
 import com.example.admin.du_an_1.UI.MainActivity;
+import com.example.admin.du_an_1.UI.UpdateActivity;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
     EditText etsearch;
     Boolean isAdmin= false;
     int soluongproduct;
+    Intent intent;
 
 
     ProductAdapter productAdapter;
@@ -105,6 +107,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                               //List<Ticket>  listticket1 = DaoTicket.getAllItem();
                final Product productdilog = listProduct.get(i);
                final Ticket ticket1 = DaoTicket.getByName(productdilog.getName());
+               final Ticket ticket0 = DaoTicket.getByName0(productdilog.getName());
 
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.setContentView(R.layout.item_option_product);
@@ -113,7 +116,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                 TextView tvname = (TextView)dialog.findViewById(R.id.tvname);
                 TextView tvcode = (TextView)dialog.findViewById(R.id.tvcode);
                 TextView tvsoluong = (TextView)dialog.findViewById(R.id.tvsoluong);
-                Button btnsua = (Button) dialog.findViewById(R.id.btnhuy);
+                Button btnsua = (Button) dialog.findViewById(R.id.btnsua);
                 Button btnxoa = (Button)dialog.findViewById(R.id.btnxoa);
                 Button btnxuat = (Button) dialog.findViewById(R.id.btnxuat);
 
@@ -122,7 +125,21 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                 soluongproduct = ticket1.getQuantity();
                 tvsoluong.setText(String.valueOf(ticket1.getQuantity()));
 
-                //
+                //update
+                btnsua.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        intent = new Intent(context,UpdateActivity.class);
+                        intent.putExtra("id",productdilog.getId());
+                        intent.putExtra("name",productdilog.getName());
+                        intent.putExtra("code",productdilog.getCode());
+                        intent.putExtra("date",ticket0.getDate());
+                        intent.putExtra("quan",String.valueOf(ticket1.getQuantity()));
+                        intent.putExtra("cat",productdilog.getCategory());
+                        startActivity(intent);
+                        dialog.cancel();
+                    }
+                });
 
                 //btn xuat kho
                 btnxuat.setOnClickListener(new View.OnClickListener() {

@@ -26,7 +26,8 @@
         <activity android:name=".UI.LoginActivity" />
         <activity android:name=".UI.MainActivity" />
         <activity android:name=".UI.AddTicketActivity" />
-        <activity android:name=".UI.CategoryActivity"></activity>
+        <activity android:name=".UI.CategoryActivity" />
+        <activity android:name=".UI.UpdateActivity"></activity>
     </application>
 
 </manifest>
