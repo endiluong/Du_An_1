@@ -1,6 +1,7 @@
 package com.example.admin.du_an_1.UI.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.admin.du_an_1.R;
+import com.example.admin.du_an_1.UI.ChangePWActivity;
+import com.example.admin.du_an_1.UI.LoginActivity;
+import com.example.admin.du_an_1.UI.UserActivity;
 
 import org.w3c.dom.Text;
 
@@ -61,17 +65,20 @@ public class Fragment_User extends Fragment implements View.OnClickListener {
                     Toast.makeText(context, "Admin Account cant be change password", Toast.LENGTH_SHORT).show();
                 } else {
                     // Do change password
+                    startActivity(new Intent(getContext(),ChangePWActivity.class));
                 }
                 break;
             case R.id.btnViewUserList:
                 if (!isAdmin) {
                     Toast.makeText(context, "Only Admin can access this feature", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Go to Activity All user
+                    if (isAdmin){
+                        startActivity(new Intent(getContext(),UserActivity.class));}
                 }
                 break;
             case R.id.btnLogOut:
                 // Log out
+                startActivity(new Intent(getContext(),LoginActivity.class));
                 break;
         }
     }

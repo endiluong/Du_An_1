@@ -64,9 +64,29 @@ public class daoUsers {
         return db.update(SQLiteHelper.TABLE_USER_NAME, values, "id=?", new String[]{String.valueOf(datamodel.getId())});
     }
     //Delete by Id
-    public int deleteUser(int id) {
-        return db.delete(SQLiteHelper.TABLE_USER_NAME, "id=?", new String[]{String.valueOf(id)});
+//    public int deleteUser(int id) {
+//        return db.delete(SQLiteHelper.TABLE_USER_NAME, "id=?", new String[]{String.valueOf(id)});
+//    }
+    ///--Sua int id --> User user
+    public int deleteUser(Users users) {
+        return db.delete(SQLiteHelper.TABLE_CATEGORY_NAME, "Id=?", new String[]{String.valueOf(users.getId())});
     }
+    //////////--------------////////////
+    public int changePassWord(Users users){
+        ContentValues values = new ContentValues();
+        values.put("username",users.getUserName());
+        values.put("password",users.getPassword());
+        int result = db.update(SQLiteHelper.TABLE_USER_NAME,values,"username=?", new
+                String[]{users.getUserName()});
+        if(result==0){
+            return -1;
+        }
+        return 1;
+    }
+
+
+
+
     ///////////////////////////////////////////////////
     // CREATE INSTANCE
     public static daoUsers getInstance(Context context) {
