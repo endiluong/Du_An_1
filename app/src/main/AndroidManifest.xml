@@ -26,7 +26,11 @@
         <activity android:name=".UI.LoginActivity" />
         <activity android:name=".UI.MainActivity" />
         <activity android:name=".UI.AddTicketActivity" />
-        <activity android:name=".UI.CategoryActivity"></activity>
+        <activity android:name=".UI.CategoryActivity" />
+        <activity android:name=".UI.UserActivity" />
+        <activity android:name=".UI.AddUserActivity" />
+        <activity android:name=".UI.ChangePassActivity" />
+        <activity android:name=".UI.ChangePWActivity"></activity>
     </application>
 
 </manifest>
