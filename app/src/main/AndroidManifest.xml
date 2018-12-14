@@ -29,7 +29,7 @@
         <activity android:name=".UI.CategoryActivity" />
         <activity android:name=".UI.UserActivity" />
         <activity android:name=".UI.AddUserActivity" />
-        <activity android:name=".UI.ChangePassActivity" />
+        <activity android:name=".UI.UpdateActivity" />
         <activity android:name=".UI.ChangePWActivity"></activity>
     </application>
 
