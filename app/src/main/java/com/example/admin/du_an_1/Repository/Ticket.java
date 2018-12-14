@@ -6,7 +6,7 @@ public class Ticket implements Serializable {
     private String id;
     private String date;
     private Boolean type;
-    private String productName;
+    private String productCode;
     private int quantity;
 
     public Ticket() {
@@ -16,7 +16,7 @@ public class Ticket implements Serializable {
         this.id = id;
         this.date = date;
         this.type = type;
-        this.productName=productName;
+        this.productCode=productName;
         this.quantity = quantity;
     }
 
@@ -45,12 +45,12 @@ public class Ticket implements Serializable {
         this.type = type;
     }
 
-    public String getproductName() {
-        return productName;
+    public String getproductCode() {
+        return productCode;
     }
 
-    public void setproductName(String productName) {
-        this.productName = productName;
+    public void setproductCode(String productName) {
+        this.productCode = productName;
     }
 
     public int getQuantity() {
