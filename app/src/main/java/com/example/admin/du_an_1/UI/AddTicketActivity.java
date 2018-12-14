@@ -69,7 +69,6 @@ public class AddTicketActivity extends AppCompatActivity implements View.OnClick
 
 
         btnAddCategory = findViewById( R.id.btnAddCategory );
-        spnCategory = (Spinner) findViewById( R.id.spnCategory );
 
 
         etQuantity = (EditText) findViewById(R.id.etQuantity);
@@ -77,12 +76,13 @@ public class AddTicketActivity extends AppCompatActivity implements View.OnClick
         etProductname = (EditText)findViewById(R.id.etProductName);
         etProductcode = (EditText)findViewById(R.id.etProductCode);
         spnCategory = (Spinner)findViewById(R.id.spnCategory);
+        btnCancel = (Button)findViewById(R.id.btnCancel);
 
         btnAddTicket= (Button)findViewById(R.id.btnAddTicket);
-
         btnAddTicket.setOnClickListener(this);
-
         btnAddCategory.setOnClickListener( this );
+        btnCancel.setOnClickListener(this);
+
 
         etDate.setOnClickListener(this);
         final Calendar c = Calendar.getInstance();
@@ -134,7 +134,8 @@ public class AddTicketActivity extends AppCompatActivity implements View.OnClick
                 }
                 break;
             case (R.id.btnCancel):
-                break;
+                 this.finish();
+                 break;
             case (R.id.etDate):
                 DatePicker();
                 break;
@@ -186,7 +187,7 @@ public class AddTicketActivity extends AppCompatActivity implements View.OnClick
 
     //validate
     public boolean validate(){
-        if (etProductcode.getText().toString().equals("")){
+        if (etProductcode.getText().toString().isEmpty()){
             Toast.makeText(this, "Product code null", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -221,7 +222,11 @@ public class AddTicketActivity extends AppCompatActivity implements View.OnClick
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        etDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        if (dayOfMonth<10 ){
+                            etDate.setText("0"+dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        }else if (monthOfYear<9){
+                            etDate.setText(dayOfMonth + "-" + "0"+(monthOfYear + 1) + "-" + year);
+                        }else etDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();

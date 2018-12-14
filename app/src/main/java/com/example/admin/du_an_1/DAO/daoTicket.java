@@ -10,6 +10,7 @@ import com.example.admin.du_an_1.Repository.Ticket;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class daoTicket {
     private SQLiteDatabase db;
@@ -53,6 +54,19 @@ public class daoTicket {
         String sql = " SELECT * FROM " + SQLiteHelper.TABLE_TICKET_NAME + " WHERE ProductName=? ";
         ArrayList<Ticket> list = getDataModels(sql, Name);
         return list.get((list.size()-1));
+    }
+    // get ticket nhap kho or update (get Date)
+    public Ticket getByName0(String Name) {
+        String sql = " SELECT * FROM " + SQLiteHelper.TABLE_TICKET_NAME + " WHERE ProductName=? ";
+        ArrayList<Ticket> list = getDataModels(sql, Name);
+        List<Ticket> list1 = null;
+        for (Ticket temp : list){
+            if (temp.getType()==true){
+                list1= new ArrayList();
+                list1.add(temp);
+            }
+        }
+        return list1.get(list1.size()-1);
     }
 
     // Add
