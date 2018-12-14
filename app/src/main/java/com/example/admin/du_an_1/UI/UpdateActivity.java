@@ -39,6 +39,7 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
     int mYear,mMonth,mDay;
     Product myProduct;
     Ticket myTicket;
+    List<Product> arrproduct;
     private ArrayAdapter<Category> adapter;
     private daoCategory dao_Category;
     private daoTicket dao_Ticket;
@@ -46,6 +47,8 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
     TicketService ticketService;
     private List<Category> lsCat;
     String strid;
+    String strquan;
+    String strcode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +58,7 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
         dao_Category = daoCategory.getInstance(this);
          lsCat = new ArrayList<>();
          lsCat = dao_Category.getAllItem();
-
+        ticketService= new TicketService(this);
         // anh xa
         etQuantityupdate = (EditText) findViewById(R.id.etQuantityupdate);
         etProductnameupdate = (EditText) findViewById(R.id.etProductNameupdate);
@@ -89,9 +92,9 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
         in = getIntent().getExtras();
         strid = in.getString("id");
         String strname = in.getString("name");
-        String strcode = in.getString("code");
+        strcode = in.getString("code");
         String strdate = in.getString("date");
-        String strquan = in.getString("quan");
+        strquan = in.getString("quan");
         String strcat = in.getString("cat");
 
         mDay = Integer.parseInt(strdate.substring(0,2));
@@ -131,7 +134,7 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
                         CategoryService ServiceCat = new CategoryService( getBaseContext() );
                         ServiceCat.addCategory( edtDialog_addCategory.getText().toString() );
                         finish();
-                        startActivityForResult( new Intent( getBaseContext(),AddTicketActivity.class ),0 );
+                        startActivityForResult( new Intent( getBaseContext(),UpdateActivity.class ),0 );
                     }
                 } ).setNegativeButton( "Cancel", new DialogInterface.OnClickListener() {
                     @Override
@@ -145,14 +148,57 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
                 this.finish();
                 break;
             case R.id.btnAddTicketupdate:
-                dao_Product.updateUser(addproduct());
-                dao_Ticket.insertTicket(addTicket());
-                Toast.makeText(this, "Update thanh cong", Toast.LENGTH_SHORT).show();
-                this.finish();
+                if (validate()){
+                    if (ticketService.addImport(addTicket(),addproduct(),"update")){
+                        Toast.makeText(this, "Update thanh cong", Toast.LENGTH_SHORT).show();
+                        this.finish();
+                    }
+                }
+                //                dao_Product.updateUser(addproduct());
+//                dao_Ticket.insertTicket(addTicket());
+
                 break;
         }
     }
 
+
+
+    //validate
+    public boolean validate(){
+
+        if (etProductcodeupdate.getText().toString().isEmpty()){
+            Toast.makeText(this, "Product code null", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (etProductnameupdate.getText().toString().equals("")){
+            Toast.makeText(this, "Peoduct name null", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (etQuantityupdate.getText().toString().equals("")){
+            Toast.makeText(this, "Quantily null", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (etQuantityupdate.getText().toString().equals("0")){
+            Toast.makeText(this, "Khong dc nhap Quanlity = 0", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (spnCategoryupdate.getCount()==0){
+            Toast.makeText(this, "Category null", Toast.LENGTH_SHORT).show();
+            return false;
+        }else {arrproduct = new ArrayList<Product>();
+            arrproduct = dao_Product.getAllItem();
+            List<String> arrcode = new ArrayList<>();
+            for (Product temp : arrproduct){
+                arrcode.add(temp.getCode());
+            }
+            arrcode.remove(strcode);
+            for (String tempcode : arrcode){
+                if (etProductcodeupdate.getText().toString().equals(tempcode)){
+                    Toast.makeText(this, "Product code exit", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }}
+        return true;
+    }
 
     private void DatePicker() {
 
@@ -162,7 +208,10 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        if (dayOfMonth<10 ){
+                        if (dayOfMonth<10&&monthOfYear<9){
+                            btnDateupdate.setText("0"+dayOfMonth + "-" + "0"+(monthOfYear + 1) + "-" + year);
+                        }
+                        else if(dayOfMonth<10 ){
                             btnDateupdate.setText("0"+dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                         }else if (monthOfYear<9){
                             btnDateupdate.setText(dayOfMonth + "-" + "0"+(monthOfYear + 1) + "-" + year);
@@ -181,12 +230,23 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public Ticket addTicket(){
-        myTicket = new Ticket();
-        myTicket.setDate(btnDateupdate.getText().toString());
-        myTicket.setType(true);
-        myTicket.setId(null);
-        myTicket.setproductName(etProductnameupdate.getText().toString());
-        myTicket.setQuantity(Integer.parseInt(etQuantityupdate.getText().toString()));
-        return myTicket;
+        if (Integer.parseInt(etQuantityupdate.getText().toString())>=Integer.parseInt(strquan)){
+            myTicket = new Ticket();
+            myTicket.setDate(btnDateupdate.getText().toString());
+            myTicket.setType(true);
+            myTicket.setId(null);
+            myTicket.setproductCode(etProductcodeupdate.getText().toString());
+            myTicket.setQuantity(Integer.parseInt(etQuantityupdate.getText().toString()));
+            return myTicket;
+        }
+        else {
+            myTicket = new Ticket();
+            myTicket.setDate(btnDateupdate.getText().toString());
+            myTicket.setType(false);
+            myTicket.setId(null);
+            myTicket.setproductCode(etProductcodeupdate.getText().toString());
+            myTicket.setQuantity(Integer.parseInt(etQuantityupdate.getText().toString()));
+            return myTicket;
+        }
     }
 }

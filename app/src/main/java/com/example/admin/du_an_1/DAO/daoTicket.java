@@ -31,7 +31,7 @@ public class daoTicket {
             temp = new Ticket();
             temp.setId(c.getString(c.getColumnIndex(SQLiteHelper.TICKET_ID)));
             temp.setType(c.getInt((c.getColumnIndex(SQLiteHelper.TICKET_TYPE)))> 0 );
-            temp.setproductName(c.getString(c.getColumnIndex(SQLiteHelper.TICKET_PRODUCTNAME)));
+            temp.setproductCode(c.getString(c.getColumnIndex(SQLiteHelper.TICKET_PRODUCTNAME)));
             temp.setQuantity(c.getInt(c.getColumnIndex(SQLiteHelper.TICKET_QUANTITY)));
             temp.setDate(c.getString(c.getColumnIndex(SQLiteHelper.TICKET_DATE)));
             result.add(temp);
@@ -50,13 +50,13 @@ public class daoTicket {
         return list.get(0);
     }
     // get by name
-    public Ticket getByName(String Name) {
+    public Ticket getByCode(String Name) {
         String sql = " SELECT * FROM " + SQLiteHelper.TABLE_TICKET_NAME + " WHERE ProductName=? ";
         ArrayList<Ticket> list = getDataModels(sql, Name);
         return list.get((list.size()-1));
     }
     // get ticket nhap kho or update (get Date)
-    public Ticket getByName0(String Name) {
+    public Ticket getByCode0(String Name) {
         String sql = " SELECT * FROM " + SQLiteHelper.TABLE_TICKET_NAME + " WHERE ProductName=? ";
         ArrayList<Ticket> list = getDataModels(sql, Name);
         List<Ticket> list1 = null;
@@ -74,7 +74,7 @@ public class daoTicket {
         ContentValues values = new ContentValues();
         values.put(SQLiteHelper.TICKET_ID, datamodel.getId());
         values.put(SQLiteHelper.TICKET_TYPE, datamodel.getType());
-        values.put(SQLiteHelper.TICKET_PRODUCTNAME, datamodel.getproductName());
+        values.put(SQLiteHelper.TICKET_PRODUCTNAME, datamodel.getproductCode());
         values.put(SQLiteHelper.TICKET_QUANTITY, datamodel.getQuantity());
         values.put(SQLiteHelper.TICKET_DATE, datamodel.getDate());
         return db.insert(SQLiteHelper.TABLE_TICKET_NAME, null, values);
@@ -84,7 +84,7 @@ public class daoTicket {
         ContentValues values = new ContentValues();
         values.put(SQLiteHelper.TICKET_ID, datamodel.getId());
         values.put(SQLiteHelper.TICKET_TYPE, datamodel.getType());
-        values.put(SQLiteHelper.TICKET_PRODUCTNAME, datamodel.getproductName());
+        values.put(SQLiteHelper.TICKET_PRODUCTNAME, datamodel.getproductCode());
         values.put(SQLiteHelper.TICKET_QUANTITY, datamodel.getQuantity());
         values.put(SQLiteHelper.TICKET_DATE, datamodel.getDate());
         return db.update(SQLiteHelper.TABLE_TICKET_NAME, values, "id=?", new String[]{String.valueOf(datamodel.getId())});

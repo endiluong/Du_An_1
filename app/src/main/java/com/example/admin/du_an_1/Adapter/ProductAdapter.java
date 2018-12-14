@@ -108,7 +108,7 @@ public class ProductAdapter extends BaseAdapter {
         holder.tvProCat.setText(_entry.getCategory());
 
         tempp = new Ticket();
-        tempp = DaoTicket.getByName(_entry.getName());
+        tempp = DaoTicket.getByCode(_entry.getCode());
         holder.tvquan.setText(String.valueOf(tempp.getQuantity()));
         return convertview;
     }

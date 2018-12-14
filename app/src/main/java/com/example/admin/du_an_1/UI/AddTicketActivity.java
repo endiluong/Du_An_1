@@ -180,7 +180,7 @@ public class AddTicketActivity extends AppCompatActivity implements View.OnClick
         myTicket.setDate(etDate.getText().toString());
         myTicket.setType(true);
         myTicket.setId(null);
-        myTicket.setproductName(etProductname.getText().toString());
+        myTicket.setproductCode(etProductcode.getText().toString());
         myTicket.setQuantity(Integer.parseInt(etQuantity.getText().toString()));
         return myTicket;
     }
@@ -210,7 +210,7 @@ public class AddTicketActivity extends AppCompatActivity implements View.OnClick
     }
 
     public boolean onAddClicked(Ticket ticket, Product product, String tittle) {
-        if (this.ticketService.addImport(ticket, product)){
+        if (this.ticketService.addImport(ticket, product,"nhap")){
             return true;
         }
         return false;
