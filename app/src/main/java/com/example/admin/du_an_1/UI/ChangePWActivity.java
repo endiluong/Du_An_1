@@ -23,7 +23,7 @@ public class ChangePWActivity extends AppCompatActivity implements View.OnClickL
     Button btnAccept,btnCancel;
     daoUsers dao_Users;
     List<Users> usersList = new ArrayList<>();
-
+    String userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +35,10 @@ public class ChangePWActivity extends AppCompatActivity implements View.OnClickL
         btnCancel = (Button) findViewById(R.id.btnCancelChange);
         dao_Users = daoUsers.getInstance(this);
 
-
+        userName= getIntent().getExtras().getString("userName");
         btnAccept.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
-
+        tvUserName.setText(userName);
     }
 
     public void Huy(View view){ finish(); }
@@ -62,14 +62,17 @@ public class ChangePWActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    public void changePassword(View view) {
-        SharedPreferences pref = getSharedPreferences("USER_FILE",MODE_PRIVATE);
-        String strUserName = pref.getString("USERNAME","");
-//        String strUserName = tvUserName.setText();
+    public void changePassword(String userName) {
+        // SharedPreferences pref = getSharedPreferences("USER_FILE",MODE_PRIVATE);
+        // String strUserName = pref.getString("USERNAME","");String strUserName = tvUserName.setText();
+
+
+
+
         dao_Users = new daoUsers(ChangePWActivity.this);
-        Users user = new Users(strUserName, etNewPass.getText().toString());
+        Users user = new Users(userName, etNewPass.getText().toString());
         try {
-            if (validateForm()>0){
+                if (validateForm()>0){
                 if (dao_Users.changePassWord(user) > 0) {
                     Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                     finish();
@@ -87,7 +90,7 @@ public class ChangePWActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnAccept:
-                changePassword(view);
+                changePassword(userName);
                 break;
             case R.id.btnCancelChange:
                 Huy(view);

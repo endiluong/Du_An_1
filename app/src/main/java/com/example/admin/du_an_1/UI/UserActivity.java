@@ -33,7 +33,7 @@ public class UserActivity extends AppCompatActivity{
     UserAdapter adapter = null;
     daoUsers daoUsers;
     Context context;
-    Users users;
+    Users users,usersdialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class UserActivity extends AppCompatActivity{
             public void onItemClick(final AdapterView<?> adapterView, View view, final int i, long l) {
                 List<Users> list = daoUsers.getAllItem();
                 //
-                final Users usersdialog = list.get(i);
+                 usersdialog = list.get(i);
                 //
                 final Dialog dialog = new Dialog(UserActivity.this);
                 dialog.setTitle("INFO USER");
@@ -86,14 +86,16 @@ public class UserActivity extends AppCompatActivity{
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         int result;
-                                        Log.i("error",  usersdialog.toString());
                                         if (usersdialog != null) {
-                                            result = daoUsers.deleteUser(usersdialog);
+                                            String nametemp = usersdialog.getUserName();
+                                            result = daoUsers.deleteUserbyUN(usersdialog);
                                             if (result > 0) {
-                                                Toast.makeText(getBaseContext(), "Was Delete", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getBaseContext(), nametemp+ " Was Deleted", Toast.LENGTH_SHORT).show();
                                             } else {
-                                                Toast.makeText(getBaseContext(), "Delete fail", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getBaseContext(), "Delete failed", Toast.LENGTH_SHORT).show();
                                             }
+                                            startActivityForResult( new Intent( getBaseContext(),UserActivity.class ),0 );
+                                            finish();
                                         }
                                         dialog.cancel();
                                     }
@@ -114,7 +116,6 @@ public class UserActivity extends AppCompatActivity{
                         dialog.cancel();
                     }
                 });
-
                 dialog.show();
             }
         });
