@@ -36,7 +36,7 @@ public class TabAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return mFragmentList.size();
+            return mFragmentList.size();
     }
 }
 

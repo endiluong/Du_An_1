@@ -5,6 +5,23 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="24dp" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:gravity="center"
+        android:textSize="24dp"
+        />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="24dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,6 +84,11 @@
             android:inputType="textPassword" />
 
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_weight="0" />
 
     <LinearLayout
         android:layout_width="match_parent"

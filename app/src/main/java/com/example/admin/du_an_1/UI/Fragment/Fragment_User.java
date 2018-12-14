@@ -65,7 +65,10 @@ public class Fragment_User extends Fragment implements View.OnClickListener {
                     Toast.makeText(context, "Admin Account cant be change password", Toast.LENGTH_SHORT).show();
                 } else {
                     // Do change password
-                    startActivity(new Intent(getContext(),ChangePWActivity.class));
+                    Intent i= new Intent(getContext(), ChangePWActivity.class);
+                    i.putExtra("userName", userName.toString());
+                    startActivity(i);
+                    // startActivity(new Intent(getContext(),ChangePWActivity.class));
                 }
                 break;
             case R.id.btnViewUserList:

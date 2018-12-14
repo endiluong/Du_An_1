@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.admin.du_an_1.Repository.SQLiteHelper;
 import com.example.admin.du_an_1.Repository.Users;
@@ -69,8 +70,14 @@ public class daoUsers {
 //    }
     ///--Sua int id --> User user
     public int deleteUser(Users users) {
-        return db.delete(SQLiteHelper.TABLE_CATEGORY_NAME, "Id=?", new String[]{String.valueOf(users.getId())});
+        Log.i(">>>>>>>",users.getId()+" ");
+        return db.delete(SQLiteHelper.TABLE_USER_NAME, "Id=?", new String[]{String.valueOf(users.getId())});
     }
+    public int deleteUserbyUN(Users users) {
+        return db.delete(SQLiteHelper.TABLE_USER_NAME, "Username=?", new String[]{String.valueOf(users.getUserName())});
+    }
+
+
     //////////--------------////////////
     public int changePassWord(Users users){
         ContentValues values = new ContentValues();
