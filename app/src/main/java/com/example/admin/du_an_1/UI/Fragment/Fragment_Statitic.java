@@ -18,6 +18,7 @@ public class Fragment_Statitic extends Fragment{
     TabAdapter myAdapter;
     Context context;
     Fragment_ListStats fmListStats;
+    Fragment_Stats fmStats;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         context= getActivity();
