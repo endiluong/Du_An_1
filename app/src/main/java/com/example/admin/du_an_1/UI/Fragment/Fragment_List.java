@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.admin.du_an_1.Adapter.ProductAdapter;
+import com.example.admin.du_an_1.Controller.StatsService;
 import com.example.admin.du_an_1.DAO.daoProducts;
 import com.example.admin.du_an_1.DAO.daoTicket;
 import com.example.admin.du_an_1.R;
@@ -132,7 +133,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                         final Dialog dialogxuat = new Dialog(getActivity());
                         dialogxuat.setContentView(R.layout.item_product_xuatkho);
                         dialogxuat.setCancelable(true);
-                        TextView tvnamexuat = (TextView)dialogxuat.findViewById(R.id.tvnamexuat);
+                        final TextView tvnamexuat = (TextView)dialogxuat.findViewById(R.id.tvnamexuat);
                         TextView tvcodexuat = (TextView)dialogxuat.findViewById(R.id.tvcodexuat);
                         TextView tvsoluongbandau = (TextView)dialogxuat.findViewById(R.id.tvsoluongbandau);
                         final EditText etsoluongxuat = (EditText)dialogxuat.findViewById(R.id.etsoluongxuat);
@@ -148,6 +149,9 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
 
                                 if (validate(soluongproduct,Integer.parseInt(etsoluongxuat.getText().toString()))){
                                 }else {
+                                    StatsService stats = new StatsService( getContext() );
+                                    String name = tvnamexuat.getText().toString();
+                                    stats.insertExport( name ,Integer.parseInt( etsoluongxuat.getText().toString() ) );
                                     Ticket temp = new Ticket();
                                     // lay ngay xuat
                                     final Calendar c = Calendar.getInstance();
@@ -169,7 +173,8 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                                         productList.setAdapter(productAdapter);
                                         productList.deferNotifyDataSetChanged();
                                         }else {
-                                        DaoTicket.insertTicket(temp);
+//                                        DaoTicket.insertTicket(temp);
+
                                     }
 
                                     Toast.makeText(getActivity(), "Xuat kho thanh cong", Toast.LENGTH_SHORT).show();
