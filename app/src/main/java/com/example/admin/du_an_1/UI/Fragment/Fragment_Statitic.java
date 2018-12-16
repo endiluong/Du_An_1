@@ -1,5 +1,6 @@
 package com.example.admin.du_an_1.UI.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,12 +16,14 @@ import com.example.admin.du_an_1.R;
 
 public class Fragment_Statitic extends Fragment{
 
-    TabAdapter adapter;
+    TabAdapter myAdapter;
 
     Fragment_Stats fmStats;
     Fragment_ListStats fmListStats;
+    Context context;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        context= getActivity();
         super.onCreate(savedInstanceState);
     }
 
@@ -32,15 +35,15 @@ public class Fragment_Statitic extends Fragment{
         fmListStats = new Fragment_ListStats();
         fmStats = new Fragment_Stats();
 
-        adapter = new TabAdapter( getActivity().getSupportFragmentManager() );
-        adapter.addFragment( fmListStats,"List Out" );
-        adapter.addFragment( fmStats,"Statitics" );
+        myAdapter = new TabAdapter(getChildFragmentManager());
+
+        myAdapter.addFragment( fmListStats,"List Out" );
+        myAdapter.addFragment( fmStats,"Statitics" );
 
         TabLayout tabItem = view.findViewById( R.id.tabItem );
         ViewPager vp = view.findViewById( R.id.vp );
 
-
-        vp.setAdapter( adapter );
+        vp.setAdapter( myAdapter );
         tabItem.setupWithViewPager( vp );
 
         return view;
