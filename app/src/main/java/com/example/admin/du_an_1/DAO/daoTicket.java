@@ -93,6 +93,13 @@ public class daoTicket {
     public int deleteTicket(int id) {
         return db.delete(SQLiteHelper.TABLE_TICKET_NAME, "id=?", new String[]{String.valueOf(id)});
     }
+
+    public long insertExport(Ticket ticket){
+        ContentValues values = new ContentValues();
+        values.put(SQLiteHelper.TICKET_PRODUCTNAME, ticket.getproductName());
+        values.put(SQLiteHelper.TICKET_QUANTITY, ticket.getQuantity());
+        return db.insert(SQLiteHelper.TABLE_TICKET_NAME, null, values);
+    }
     ///////////////////////////////////////////////////
     // CREATE INSTANCE
     public static daoTicket getInstance(Context context) {
