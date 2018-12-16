@@ -96,7 +96,7 @@ public class daoTicket {
 
     public long insertExport(Ticket ticket){
         ContentValues values = new ContentValues();
-        values.put(SQLiteHelper.TICKET_PRODUCTNAME, ticket.getproductName());
+        values.put(SQLiteHelper.TICKET_PRODUCTNAME, ticket.getproductCode());
         values.put(SQLiteHelper.TICKET_QUANTITY, ticket.getQuantity());
         return db.insert(SQLiteHelper.TABLE_TICKET_NAME, null, values);
     }

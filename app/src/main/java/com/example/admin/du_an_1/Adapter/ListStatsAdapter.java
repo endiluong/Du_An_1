@@ -39,7 +39,7 @@ public class ListStatsAdapter extends ArrayAdapter<Ticket> {
         TextView tvQuantity = (TextView)convertView.findViewById( R.id.tvQuantity_out );
 
         Ticket temp = arrTicket.get( position );
-        tvName_out.setText( temp.getproductName() );
+        tvName_out.setText( temp.getproductCode() );
         tvQuantity.setText( String.valueOf( temp.getQuantity() ) );
 
         return convertView;

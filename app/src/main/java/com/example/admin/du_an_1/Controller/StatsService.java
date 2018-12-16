@@ -24,13 +24,13 @@ public class StatsService {
         arrTicket = myDaoTicket.getAllItem();
         for (int i = 0;i<arrTicket.size();i++){
             ticket = arrTicket.get( i );
-            if (name.equals( ticket.getproductName() )){
-                name = ticket.getproductName();
+            if (name.equals( ticket.getproductCode() )){
+                name = ticket.getproductCode();
                 ticket.setQuantity( quantity_out );
                 myDaoTicket.insertExport( ticket );
                 return true;
             }else {
-                ticket.setproductName( name );
+                ticket.setproductCode( name );
                 ticket.setQuantity( quantity_out );
                 myDaoTicket.insertExport( ticket );
                 return false;
