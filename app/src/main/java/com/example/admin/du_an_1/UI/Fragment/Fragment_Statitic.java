@@ -15,12 +15,9 @@ import com.example.admin.du_an_1.Adapter.TabAdapter;
 import com.example.admin.du_an_1.R;
 
 public class Fragment_Statitic extends Fragment{
-
     TabAdapter myAdapter;
-
-    Fragment_Stats fmStats;
-    Fragment_ListStats fmListStats;
     Context context;
+    Fragment_ListStats fmListStats;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         context= getActivity();
@@ -36,16 +33,12 @@ public class Fragment_Statitic extends Fragment{
         fmStats = new Fragment_Stats();
 
         myAdapter = new TabAdapter(getChildFragmentManager());
-
         myAdapter.addFragment( fmListStats,"List Out" );
         myAdapter.addFragment( fmStats,"Statitics" );
-
         TabLayout tabItem = view.findViewById( R.id.tabItem );
         ViewPager vp = view.findViewById( R.id.vp );
-
         vp.setAdapter( myAdapter );
         tabItem.setupWithViewPager( vp );
-
         return view;
     }
 }
