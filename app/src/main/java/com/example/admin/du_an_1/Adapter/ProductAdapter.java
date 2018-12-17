@@ -101,24 +101,17 @@ public class ProductAdapter extends BaseAdapter {
             holder.tvquan = (TextView) convertview.findViewById(R.id.tvsoluongadp);
             convertview.setTag(holder);
         } else
+
         holder = (ViewHolder) convertview.getTag();
         Product _entry = (Product) arrProduct.get(i);
         holder.tvProName.setText(_entry.getName());
         holder.tvProCode.setText(_entry.getCode());
+        holder.tvquan.setText(String.valueOf(_entry.getQuantity()));
         holder.tvProCat.setText(_entry.getCategory());
 
-        tempp = new Ticket();
-        tempp = DaoTicket.getByCode(_entry.getCode());
-        holder.tvquan.setText(String.valueOf(tempp.getQuantity()));
         return convertview;
     }
 
-//    @Override
-//    public void notifyDataSetChanged() {
-//        super.notifyDataSetChanged();
-//    }
-//    public void changeDataset(List<Product> items){
-//        this.arrProduct = items;
-//        notifyDataSetChanged();
-//    }
+
+
 }

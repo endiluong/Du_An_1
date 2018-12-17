@@ -30,6 +30,7 @@ public class daoProducts {
             temp.setId(c.getString(c.getColumnIndex(SQLiteHelper.PRODUCT_ID)));
             temp.setName(c.getString(c.getColumnIndex(SQLiteHelper.PRODUCT_NAME)));
             temp.setCategory(c.getString(c.getColumnIndex(SQLiteHelper.PRODUCT_CATEGORY)));
+            temp.setCategory(c.getString(c.getColumnIndex(SQLiteHelper.PRODUCT_QUANTITY)));
             temp.setCode(c.getString(c.getColumnIndex(SQLiteHelper.PRODUCT_CODE)));
             result.add(temp);
         }
@@ -52,6 +53,7 @@ public class daoProducts {
         values.put(SQLiteHelper.PRODUCT_ID, datamodel.getId());
         values.put(SQLiteHelper.PRODUCT_NAME, datamodel.getName());
         values.put(SQLiteHelper.PRODUCT_CATEGORY, datamodel.getCategory());
+        values.put(SQLiteHelper.PRODUCT_QUANTITY, datamodel.getQuantity());
         values.put(SQLiteHelper.PRODUCT_CODE, datamodel.getCode());
         return db.insert(SQLiteHelper.TABLE_PRODUCT_NAME, null, values);
     }
@@ -61,6 +63,7 @@ public class daoProducts {
         values.put(SQLiteHelper.PRODUCT_ID, datamodel.getId());
         values.put(SQLiteHelper.PRODUCT_NAME, datamodel.getName());
         values.put(SQLiteHelper.PRODUCT_CATEGORY, datamodel.getCategory());
+        values.put(SQLiteHelper.PRODUCT_QUANTITY, datamodel.getQuantity());
         values.put(SQLiteHelper.PRODUCT_CODE, datamodel.getCode());
         return db.update(SQLiteHelper.TABLE_PRODUCT_NAME, values, "id=?", new String[]{String.valueOf(datamodel.getId())});
     }

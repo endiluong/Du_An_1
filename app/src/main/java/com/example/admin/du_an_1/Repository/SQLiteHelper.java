@@ -21,6 +21,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static String PRODUCT_ID ="Id";
     public static String PRODUCT_NAME="Name";
     public static String PRODUCT_CODE="Code";
+    public static String PRODUCT_QUANTITY="Quantity";
     public static String PRODUCT_CATEGORY="Category";
     //
     //
@@ -55,6 +56,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             PRODUCT_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "+
             PRODUCT_CODE+ " TEXT, "+
             PRODUCT_CATEGORY+ " TEXT, " +
+            PRODUCT_QUANTITY+ " INTEGER, " +
             PRODUCT_NAME+ " TEXT )";
     /////////////////////////////////////
     // TABLE CATEGORY

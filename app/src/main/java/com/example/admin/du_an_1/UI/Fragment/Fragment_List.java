@@ -162,25 +162,32 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                                     temp.setproductCode(productdilog.getCode());
                                     temp.setQuantity(Integer.parseInt(etsoluongxuat.getText().toString()));
                                     temp.setDate(date);
+                                    int soluongconlai =  (productdilog.getQuantity())-Integer.parseInt(etsoluongxuat.getText().toString());
+                                    if (productdilog.getQuantity() == Integer.parseInt(etsoluongxuat.getText().toString())){
 
-                                    if (temp.getQuantity()==0){
                                         DaoTicket.insertTicket(temp);
                                         DaoProducts.deleteproduct(productdilog);
                                         listProduct = DaoProducts.getAllItem();
                                         productAdapter = new ProductAdapter(context, listProduct);
                                         productList.setAdapter(productAdapter);
                                         productList.deferNotifyDataSetChanged();
+
                                         }else {
                                         // tao ticket xuat
                                         DaoTicket.insertTicket(temp);
                                  //    update ticket ban dau
-                                        int soluongconlai =  (ticket1.getQuantity())-Integer.parseInt(etsoluongxuat.getText().toString());
-                                        ticket1.setType(true);
-                                        ticket1.setQuantity(soluongconlai);
-                                        ticket1.setproductCode(productdilog.getCode());
-                                        ticket1.setId(ticket1.getId());
-                                        ticket1.setDate(ticket1.getDate());
-                                          DaoTicket.updateTicket(ticket1);
+                                        //productdilog.setType(true);
+                                        productdilog.setQuantity(soluongconlai);
+//                                        ticket1.setproductCode(productdilog.getCode());
+//                                        ticket1.setId(ticket1.getId());
+//                                        ticket1.setDate(ticket1.getDate());
+//                                          DaoTicket.updateTicket(ticket1);
+                                        productdilog.setId(productdilog.getId());
+                                        productdilog.setCode(productdilog.getCode());
+                                        productdilog.setName(productdilog.getName());
+                                        productdilog.setCategory(productdilog.getCategory());
+                                        DaoProducts.updateUser(productdilog);
+
                                     }
 
                                     Toast.makeText(getActivity(), "Xuat kho thanh cong", Toast.LENGTH_SHORT).show();
