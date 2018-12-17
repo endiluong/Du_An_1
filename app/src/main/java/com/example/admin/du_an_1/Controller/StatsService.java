@@ -25,9 +25,9 @@ public class StatsService {
         for (int i = 0;i<arrTicket.size();i++){
             ticket = arrTicket.get( i );
             if (name.equals( ticket.getproductCode() )){
-                name = ticket.getproductCode();
-                ticket.setQuantity( quantity_out );
-                myDaoTicket.insertExport( ticket );
+//                name = ticket.getproductCode();
+//                ticket.setQuantity( quantity_out );
+//                myDaoTicket.insertExport( ticket );
                 return true;
             }else {
                 ticket.setproductCode( name );

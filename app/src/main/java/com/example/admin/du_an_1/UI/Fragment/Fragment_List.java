@@ -151,9 +151,11 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
 
                                 if (validate(soluongproduct,Integer.parseInt(etsoluongxuat.getText().toString()))){
                                 }else {
+                                    // Them Xuat vao List. //
                                     StatsService stats = new StatsService( getContext() );
                                     String name = tvnamexuat.getText().toString();
                                     stats.insertExport( name ,Integer.parseInt( etsoluongxuat.getText().toString() ) );
+                                    ////////////////////////
                                     Ticket temp = new Ticket();
                                     // lay ngay xuat mac dinh hom nay
                                     String date = (mDay + "-" + mMonth + "-" + mYear);
@@ -172,7 +174,11 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                                         productList.deferNotifyDataSetChanged();
                                         }else {
                                         // tao ticket xuat
-                                        DaoTicket.insertTicket(temp);
+
+                                        // Bỏ phần này sẽ không trùng. //
+//                                        DaoTicket.insertTicket(temp);
+                                        /////////////////////////////////
+
                                  //    update ticket ban dau
                                         int soluongconlai =  (ticket1.getQuantity())-Integer.parseInt(etsoluongxuat.getText().toString());
                                         ticket1.setType(true);
@@ -181,12 +187,15 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                                         ticket1.setId(ticket1.getId());
                                         ticket1.setDate(ticket1.getDate());
                                           DaoTicket.updateTicket(ticket1);
-                                    }
 
+                                        ///////////////////////////////
+                                        //Bỏ phần này sẽ giảm 1 cái trừng bên Danh Sách Thống kê. //
+//                                        DaoTicket.insertTicket(temp);
+                                        /////////////////////////////////
+                                    }
                                     Toast.makeText(getActivity(), "Xuat kho thanh cong", Toast.LENGTH_SHORT).show();
                                     dialogxuat.cancel();
                                 }
-
                             }
                         });
 
@@ -201,8 +210,6 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                         dialogxuat.show();
                     }
                 });
-
-
 
                 btnxoa.setOnClickListener(new View.OnClickListener() {
                     @Override
