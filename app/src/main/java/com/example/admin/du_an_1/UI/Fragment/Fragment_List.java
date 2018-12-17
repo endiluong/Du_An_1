@@ -240,7 +240,6 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                 dialog.show();
             }
         });
-
         return view;
     }
 
