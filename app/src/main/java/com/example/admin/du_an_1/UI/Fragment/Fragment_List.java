@@ -49,6 +49,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
     daoTicket DaoTicket;
     List<Product> listProduct;
     List<Ticket> listTeck;
+    List<Ticket> listTeckforupdate;
     EditText etsearch;
     Boolean isAdmin= false;
     int soluongproduct;
@@ -89,8 +90,9 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                               //List<Ticket>  listticket1 = DaoTicket.getAllItem();
                final Product productdilog = listProduct.get(i);
+
                final Ticket ticket1 = DaoTicket.getByCode(productdilog.getCode());
-               final Ticket ticket0 = DaoTicket.getByCode0(productdilog.getCode());
+             //  final Ticket ticket0 = DaoTicket.getByCode0(productdilog.getCode());
 
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.setContentView(R.layout.item_option_product);
@@ -106,7 +108,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                 tvname.setText(productdilog.getName());
                 tvcode.setText(productdilog.getCode());
                 soluongproduct = ticket1.getQuantity();
-                tvsoluong.setText(String.valueOf(ticket1.getQuantity()));
+                tvsoluong.setText(String.valueOf(soluongproduct));
 
                 //update
                 btnsua.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +118,8 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                         intent.putExtra("id",productdilog.getId());
                         intent.putExtra("name",productdilog.getName());
                         intent.putExtra("code",productdilog.getCode());
-                        intent.putExtra("date",ticket0.getDate());
+                        intent.putExtra("date",ticket1.getDate());
+                        intent.putExtra("idticket",ticket1.getId());
                         intent.putExtra("quan",String.valueOf(ticket1.getQuantity()));
                         intent.putExtra("cat",productdilog.getCategory());
                         startActivity(intent);
@@ -157,8 +160,9 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                                     temp.setId(null);
                                     temp.setType(false);
                                     temp.setproductCode(productdilog.getCode());
-                                    temp.setQuantity((ticket1.getQuantity()-Integer.parseInt(etsoluongxuat.getText().toString())));
+                                    temp.setQuantity(Integer.parseInt(etsoluongxuat.getText().toString()));
                                     temp.setDate(date);
+
                                     if (temp.getQuantity()==0){
                                         DaoTicket.insertTicket(temp);
                                         DaoProducts.deleteproduct(productdilog);
@@ -167,8 +171,16 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                                         productList.setAdapter(productAdapter);
                                         productList.deferNotifyDataSetChanged();
                                         }else {
-//                                        DaoTicket.insertTicket(temp);
-
+                                        // tao ticket xuat
+                                        DaoTicket.insertTicket(temp);
+                                 //    update ticket ban dau
+                                        int soluongconlai =  (ticket1.getQuantity())-Integer.parseInt(etsoluongxuat.getText().toString());
+                                        ticket1.setType(true);
+                                        ticket1.setQuantity(soluongconlai);
+                                        ticket1.setproductCode(productdilog.getCode());
+                                        ticket1.setId(ticket1.getId());
+                                        ticket1.setDate(ticket1.getDate());
+                                          DaoTicket.updateTicket(ticket1);
                                     }
 
                                     Toast.makeText(getActivity(), "Xuat kho thanh cong", Toast.LENGTH_SHORT).show();
