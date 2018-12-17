@@ -83,7 +83,7 @@ public class TicketService {
 
         }
         else if (os.equals("update")){
-                DaoTicket.insertTicket(ticket);
+                DaoTicket.updateTicket(ticket);
                 DaoProducts.updateUser(product);
                 return true;
 

@@ -47,6 +47,7 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
     TicketService ticketService;
     private List<Category> lsCat;
     String strid;
+    String stridticket;
     String strquan;
     String strcode;
     @Override
@@ -96,6 +97,7 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
         String strdate = in.getString("date");
         strquan = in.getString("quan");
         String strcat = in.getString("cat");
+        stridticket = in.getString("idticket");
 
         mDay = Integer.parseInt(strdate.substring(0,2));
         mMonth = Integer.parseInt(strdate.substring(3,5))-1;
@@ -230,23 +232,12 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public Ticket addTicket(){
-        if (Integer.parseInt(etQuantityupdate.getText().toString())>=Integer.parseInt(strquan)){
             myTicket = new Ticket();
             myTicket.setDate(btnDateupdate.getText().toString());
             myTicket.setType(true);
-            myTicket.setId(null);
+            myTicket.setId(stridticket);
             myTicket.setproductCode(etProductcodeupdate.getText().toString());
             myTicket.setQuantity(Integer.parseInt(etQuantityupdate.getText().toString()));
             return myTicket;
-        }
-        else {
-            myTicket = new Ticket();
-            myTicket.setDate(btnDateupdate.getText().toString());
-            myTicket.setType(false);
-            myTicket.setId(null);
-            myTicket.setproductCode(etProductcodeupdate.getText().toString());
-            myTicket.setQuantity(Integer.parseInt(etQuantityupdate.getText().toString()));
-            return myTicket;
-        }
     }
 }

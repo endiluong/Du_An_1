@@ -53,20 +53,27 @@ public class daoTicket {
     public Ticket getByCode(String Name) {
         String sql = " SELECT * FROM " + SQLiteHelper.TABLE_TICKET_NAME + " WHERE ProductName=? ";
         ArrayList<Ticket> list = getDataModels(sql, Name);
-        return list.get((list.size()-1));
+        return list.get(0);
     }
+
     // get ticket nhap kho or update (get Date)
-    public Ticket getByCode0(String Name) {
+//    public Ticket getByCode0(String Name) {
+//        String sql = " SELECT * FROM " + SQLiteHelper.TABLE_TICKET_NAME + " WHERE ProductName=? ";
+//        ArrayList<Ticket> list = getDataModels(sql, Name);
+//        List<Ticket> list1 = null;
+//        for (Ticket temp : list){
+//            if (temp.getType()==true){
+//                list1= new ArrayList();
+//                list1.add(temp);
+//            }
+//        }
+//        return list1.get(list1.size()-1);
+//    }
+// get list ticket by id
+    public List<Ticket> getListByCode(String Name) {
         String sql = " SELECT * FROM " + SQLiteHelper.TABLE_TICKET_NAME + " WHERE ProductName=? ";
         ArrayList<Ticket> list = getDataModels(sql, Name);
-        List<Ticket> list1 = null;
-        for (Ticket temp : list){
-            if (temp.getType()==true){
-                list1= new ArrayList();
-                list1.add(temp);
-            }
-        }
-        return list1.get(list1.size()-1);
+        return list;
     }
 
     // Add

@@ -101,7 +101,7 @@ public class ProductAdapter extends BaseAdapter {
             holder.tvquan = (TextView) convertview.findViewById(R.id.tvsoluongadp);
             convertview.setTag(holder);
         } else
-            holder = (ViewHolder) convertview.getTag();
+        holder = (ViewHolder) convertview.getTag();
         Product _entry = (Product) arrProduct.get(i);
         holder.tvProName.setText(_entry.getName());
         holder.tvProCode.setText(_entry.getCode());
