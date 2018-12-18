@@ -174,7 +174,16 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
 
                                         }else {
                                         // tao ticket xuat
-                                        DaoTicket.insertTicket(temp);
+
+                                            /////////////////
+                                           // TRỌNG HÙNG. //
+                                        // Del cai phan nay. Vi tao them mot cai ben List_ stats. //
+                                        
+//                                        DaoTicket.insertTicket(temp);
+
+                                        //////////////////
+
+
                                  //    update ticket ban dau
                                         //productdilog.setType(true);
                                         productdilog.setQuantity(soluongconlai);
@@ -191,6 +200,15 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                                     }
 
                                     Toast.makeText(getActivity(), "Xuat kho thanh cong", Toast.LENGTH_SHORT).show();
+
+
+                                     /////////////////
+                                    // TRỌNG HÙNG .//
+                   // Thêm cái này ở đây để nó thay đổi liền sau khi xuất sẽ lượng số lượng xuất. //
+                                    productAdapter.notifyDataSetChanged();
+                   ////////////////////////////////////////////////////////////////////////////////
+
+
                                     dialogxuat.cancel();
                                 }
 
@@ -259,6 +277,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
         productList.setAdapter(productAdapter);
         productList.deferNotifyDataSetChanged();
 
+
         // et search view
         etsearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -282,6 +301,8 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                 productList.setAdapter(productAdapter);
             }
         });
+
+
         super.onResume();
     }
 
