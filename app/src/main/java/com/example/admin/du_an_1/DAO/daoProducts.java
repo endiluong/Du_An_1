@@ -30,7 +30,7 @@ public class daoProducts {
             temp.setId(c.getString(c.getColumnIndex(SQLiteHelper.PRODUCT_ID)));
             temp.setName(c.getString(c.getColumnIndex(SQLiteHelper.PRODUCT_NAME)));
             temp.setCategory(c.getString(c.getColumnIndex(SQLiteHelper.PRODUCT_CATEGORY)));
-            temp.setQuantity(c.getInt(c.getColumnIndex(SQLiteHelper.PRODUCT_QUANTITY)));
+            temp.setQuantity(Integer.parseInt(c.getString(c.getColumnIndex(SQLiteHelper.PRODUCT_QUANTITY))));
             temp.setCode(c.getString(c.getColumnIndex(SQLiteHelper.PRODUCT_CODE)));
             result.add(temp);
         }

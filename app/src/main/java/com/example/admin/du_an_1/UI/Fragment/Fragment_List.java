@@ -120,7 +120,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                         intent.putExtra("code",productdilog.getCode());
                         intent.putExtra("date",ticket1.getDate());
                         intent.putExtra("idticket",ticket1.getId());
-                        intent.putExtra("quan",String.valueOf(ticket1.getQuantity()));
+                        intent.putExtra("quan",String.valueOf(productdilog.getQuantity()));
                         intent.putExtra("cat",productdilog.getCategory());
                         startActivity(intent);
                         dialog.cancel();
@@ -151,11 +151,9 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
 
                                 if (validate(soluongproduct,Integer.parseInt(etsoluongxuat.getText().toString()))){
                                 }else {
-                                    // Them Xuat vao List. //
                                     StatsService stats = new StatsService( getContext() );
                                     String name = tvnamexuat.getText().toString();
                                     stats.insertExport( name ,Integer.parseInt( etsoluongxuat.getText().toString() ) );
-                                    ////////////////////////
                                     Ticket temp = new Ticket();
                                     // lay ngay xuat mac dinh hom nay
                                     String date = (mDay + "-" + mMonth + "-" + mYear);
@@ -176,18 +174,14 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
 
                                         }else {
                                         // tao ticket xuat
-
-                                        // Bỏ phần này sẽ không trùng. //
-//                                        DaoTicket.insertTicket(temp);
-                                        /////////////////////////////////
-
+                                        DaoTicket.insertTicket(temp);
                                  //    update ticket ban dau
                                         //productdilog.setType(true);
                                         productdilog.setQuantity(soluongconlai);
 //                                        ticket1.setproductCode(productdilog.getCode());
 //                                        ticket1.setId(ticket1.getId());
-//                                          DaoTicket.updateTicket(ticket1);
 //                                        ticket1.setDate(ticket1.getDate());
+//                                          DaoTicket.updateTicket(ticket1);
                                         productdilog.setId(productdilog.getId());
                                         productdilog.setCode(productdilog.getCode());
                                         productdilog.setName(productdilog.getName());
@@ -195,9 +189,11 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                                         DaoProducts.updateUser(productdilog);
 
                                     }
+
                                     Toast.makeText(getActivity(), "Xuat kho thanh cong", Toast.LENGTH_SHORT).show();
                                     dialogxuat.cancel();
                                 }
+
                             }
                         });
 
@@ -212,6 +208,8 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                         dialogxuat.show();
                     }
                 });
+
+
 
                 btnxoa.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -240,6 +238,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                 dialog.show();
             }
         });
+
         return view;
     }
 
