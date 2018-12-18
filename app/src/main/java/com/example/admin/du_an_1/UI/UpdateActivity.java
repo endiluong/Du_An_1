@@ -227,17 +227,29 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
         myProduct.setCode(etProductcodeupdate.getText().toString());
         myProduct.setName(etProductnameupdate.getText().toString());
         myProduct.setCategory(spnCategoryupdate.getSelectedItem().toString());
+        myProduct.setQuantity(Integer.parseInt(etQuantityupdate.getText().toString()));
         myProduct.setId(strid);
         return myProduct;
     }
 
     public Ticket addTicket(){
+        //if (Integer.parseInt(strquan) >= Integer.parseInt(etQuantityupdate.getText().toString())){
             myTicket = new Ticket();
             myTicket.setDate(btnDateupdate.getText().toString());
             myTicket.setType(true);
-            myTicket.setId(stridticket);
+            myTicket.setId(null);
             myTicket.setproductCode(etProductcodeupdate.getText().toString());
             myTicket.setQuantity(Integer.parseInt(etQuantityupdate.getText().toString()));
             return myTicket;
+//        }else {
+//            myTicket = new Ticket();
+//            myTicket.setDate(btnDateupdate.getText().toString());
+//            myTicket.setType(true);
+//            myTicket.setId(null);
+//            myTicket.setproductCode(etProductcodeupdate.getText().toString());
+//            myTicket.setQuantity(Integer.parseInt(strquan) + Integer.parseInt(etQuantityupdate.getText().toString()));
+//            return myTicket;
+//        }
+
     }
 }

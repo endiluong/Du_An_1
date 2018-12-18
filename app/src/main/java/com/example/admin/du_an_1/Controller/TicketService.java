@@ -63,14 +63,22 @@ public class TicketService {
                     String tempcode = temp.getCode();
                     String tempname = temp.getName();
                     if (tempcode.equals(product.getCode()) && tempname.equals(product.getName())){
-                        Ticket ticketold = DaoTicket.getByCode(product.getCode());
-                        Ticket tempp = new Ticket();
-                        tempp.setId(null);
-                        tempp.setproductCode(ticketold.getproductCode());
-                        tempp.setDate(ticket.getDate());
-                        tempp.setType(true);
-                        tempp.setQuantity(ticketold.getQuantity()+(ticket.getQuantity()));
-                        DaoTicket.insertTicket(tempp);
+                       // Ticket ticketold = DaoTicket.getByCode(product.getCode());
+                        Product tempp = new Product();
+                        tempp.setId(temp.getId());
+                        tempp.setCode(temp.getCode());
+                        tempp.setName(temp.getName());
+                        tempp.setCategory(temp.getCategory());
+                        tempp.setQuantity(temp.getQuantity() + product.getQuantity());
+                        DaoProducts.updateUser(tempp);
+
+                        Ticket ticketTemp = new Ticket();
+                        ticketTemp.setId(null);
+                        ticketTemp.setType(true);
+                        ticketTemp.setDate(ticket.getDate());
+                        ticketTemp.setproductCode(product.getCode());
+                        ticketTemp.setQuantity(ticket.getQuantity());
+                        DaoTicket.insertTicket(ticketTemp);
                         Toast.makeText(context, "Add Success", Toast.LENGTH_SHORT).show();
                         return true;
                     }
@@ -83,7 +91,7 @@ public class TicketService {
 
         }
         else if (os.equals("update")){
-                DaoTicket.updateTicket(ticket);
+                DaoTicket.insertTicket(ticket);
                 DaoProducts.updateUser(product);
                 return true;
 
