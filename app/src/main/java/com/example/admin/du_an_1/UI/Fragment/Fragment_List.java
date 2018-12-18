@@ -178,7 +178,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                                             /////////////////
                                            // TRỌNG HÙNG. //
                                         // Del cai phan nay. Vi tao them mot cai ben List_ stats. //
-                                        
+
 //                                        DaoTicket.insertTicket(temp);
 
                                         //////////////////

@@ -35,10 +35,27 @@ public class ListStatsAdapter extends ArrayAdapter<Ticket> {
 
         convertView = LayoutInflater.from( context ).inflate( Layout,null );
 
+
         TextView tvName_out = (TextView)convertView.findViewById( R.id.tvName_out );
         TextView tvQuantity = (TextView)convertView.findViewById( R.id.tvQuantity_out );
 
+
+         /////////////////
+        // TRỌNG HÙNG. //
+        TextView tvType = (TextView)convertView.findViewById( R.id.tvType );
+        // Phần này để setBg cho Import hoặc Export. //
+        if (arrTicket.get( position ).getType()){
+            tvType.setText( "Import" );
+            convertView.setBackgroundResource( R.color.green );
+        }else {
+            tvType.setText( "Export" );
+            convertView.setBackgroundResource( R.color.red );
+        }
+        ////////////////////////////////////////
+
+
         Ticket temp = arrTicket.get( position );
+
         tvName_out.setText( temp.getproductCode() );
         tvQuantity.setText( String.valueOf( temp.getQuantity() ) );
 
