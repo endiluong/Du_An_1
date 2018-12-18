@@ -120,7 +120,7 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                         intent.putExtra("code",productdilog.getCode());
                         intent.putExtra("date",ticket1.getDate());
                         intent.putExtra("idticket",ticket1.getId());
-                        intent.putExtra("quan",String.valueOf(ticket1.getQuantity()));
+                        intent.putExtra("quan",String.valueOf(productdilog.getQuantity()));
                         intent.putExtra("cat",productdilog.getCategory());
                         startActivity(intent);
                         dialog.cancel();

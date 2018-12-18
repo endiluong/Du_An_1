@@ -26,8 +26,6 @@ public class ProductAdapter extends BaseAdapter {
     LayoutInflater inflater;
     daoProducts daoProducts;
     private List<Product> arrProductPhu;
-    Ticket tempp;
-    daoTicket DaoTicket;
 
     public ProductAdapter(Context context, List<Product> arrProduct){
         super();
@@ -35,7 +33,6 @@ public class ProductAdapter extends BaseAdapter {
         this.arrProduct = arrProduct;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         daoProducts = new daoProducts(context);
-        DaoTicket = new daoTicket(context);
 
         this.arrProductPhu = new ArrayList<Product>();
         this.arrProductPhu.addAll(arrProduct);
