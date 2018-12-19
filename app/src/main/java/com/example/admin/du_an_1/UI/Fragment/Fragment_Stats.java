@@ -88,7 +88,7 @@ public class Fragment_Stats extends Fragment {
         //Products.
         myDAO_Products = daoProducts.getInstance( context );
         arrProducts = myDAO_Products.getAllItem();
-        initial();
+            initial();
         checkByCategory(spnCate_find.getSelectedItem().toString());
         tvTotal.setText( String.valueOf( myDAO_Products.Stats_total() ) );
 
@@ -106,7 +106,9 @@ public class Fragment_Stats extends Fragment {
         adapterSpin.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spnCate_find.setAdapter(adapterSpin);
         // Refresh Data. //
+/*
         adapter.notifyDataSetChanged();
+*/
     }
 
     public Boolean checkByCategory(String nameCate){

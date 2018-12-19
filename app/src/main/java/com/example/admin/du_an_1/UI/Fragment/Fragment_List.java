@@ -114,16 +114,20 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                 btnsua.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        intent = new Intent(context,UpdateActivity.class);
-                        intent.putExtra("id",productdilog.getId());
-                        intent.putExtra("name",productdilog.getName());
-                        intent.putExtra("code",productdilog.getCode());
-                        intent.putExtra("date",ticket1.getDate());
-                        intent.putExtra("idticket",ticket1.getId());
-                        intent.putExtra("quan",String.valueOf(productdilog.getQuantity()));
-                        intent.putExtra("cat",productdilog.getCategory());
-                        startActivity(intent);
-                        dialog.cancel();
+                        if(isAdmin) {
+                            intent = new Intent(context, UpdateActivity.class);
+                            intent.putExtra("id", productdilog.getId());
+                            intent.putExtra("name", productdilog.getName());
+                            intent.putExtra("code", productdilog.getCode());
+                            intent.putExtra("date", ticket1.getDate());
+                            intent.putExtra("idticket", ticket1.getId());
+                            intent.putExtra("quan", String.valueOf(productdilog.getQuantity()));
+                            intent.putExtra("cat", productdilog.getCategory());
+                            startActivity(intent);
+                            dialog.cancel();
+                        }else {
+                            Toast.makeText(context, "Only Admin can update", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -178,12 +182,8 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                                             /////////////////
                                            // TRỌNG HÙNG. //
                                         // Del cai phan nay. Vi tao them mot cai ben List_ stats. //
-
 //                                        DaoTicket.insertTicket(temp);
-
                                         //////////////////
-
-
                                  //    update ticket ban dau
                                         //productdilog.setType(true);
                                         productdilog.setQuantity(soluongconlai);
@@ -196,19 +196,13 @@ public class Fragment_List extends Fragment implements View.OnClickListener, Ada
                                         productdilog.setName(productdilog.getName());
                                         productdilog.setCategory(productdilog.getCategory());
                                         DaoProducts.updateUser(productdilog);
-
                                     }
-
                                     Toast.makeText(getActivity(), "Xuat kho thanh cong", Toast.LENGTH_SHORT).show();
-
-
                                      /////////////////
                                     // TRỌNG HÙNG .//
                    // Thêm cái này ở đây để nó thay đổi liền sau khi xuất sẽ lượng số lượng xuất. //
                                     productAdapter.notifyDataSetChanged();
                    ////////////////////////////////////////////////////////////////////////////////
-
-
                                     dialogxuat.cancel();
                                 }
 
