@@ -83,4 +83,59 @@ public class daoProducts {
         return instance;
     }
 
+     /////////////////
+    // TRỌNG HÙNG. //
+    //
+    // cái này dùng để thống kê hàng tồn kho. //
+    public int Stats_total(){
+
+        int total = 0;
+        String sSQLite = "SELECT SUM(Quantity) FROM " + SQLiteHelper.TABLE_PRODUCT_NAME + " WHERE Quantity ";
+
+        Cursor cursor = db.rawQuery( sSQLite,null );
+        cursor.moveToFirst();
+        while (cursor.isAfterLast()==false){
+            total = cursor.getInt(0);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return total;
+
+    }
+
+    ///////////////////////////////////////////
+
+    /////////////////
+    // TRỌNG HÙNG. //
+    //
+    // cái này dùng để thống kê hàng tồn kho. ////
+    // Bỏ. //
+//    public Boolean Stats_byCategory(String name){
+//        String sSQLite = "SELECT Category,Quantity "+
+//                " FROM " + SQLiteHelper.TABLE_PRODUCT_NAME +
+//                " WHERE " + SQLiteHelper.PRODUCT_CATEGORY + " = ? " +
+//                " group by Category";
+//
+//        Cursor cursor = db.rawQuery( sSQLite,null );
+//        cursor.moveToFirst();
+//        while (cursor.isAfterLast()==false){
+//           int i = cursor.getInt(0);
+//            cursor.moveToNext();
+//        }
+//        cursor.close();
+//        return Stats_byCategory(sSQLite);
+//    }
+//
+//    //get By Id
+//    public Product getBYCate(String nameCate) {
+//        String sql = "SELECT * FROM " + SQLiteHelper.TABLE_PRODUCT_NAME + " WHERE Category=? ";
+//        ArrayList<Product> list = getDataModels(sql, nameCate);
+//        return list.get(0);
+//    }
+
+
+
+    ///////////////////////////////////////////
+
 }
